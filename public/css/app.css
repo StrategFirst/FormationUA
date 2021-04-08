@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+:root {
+	--color-ua: #0ABBEF;
+}
+
+html {
+	background-color: black;
+	color: white;
+	font-family: 'Poppins', monospace;
+}
