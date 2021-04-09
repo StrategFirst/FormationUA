@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/formation', 'App\Http\Controllers\ControllerFormation@formation')->name('formation');
+Route::get('/formation', 'App\Http\Controllers\ControllerFormation@render')->name('formation');

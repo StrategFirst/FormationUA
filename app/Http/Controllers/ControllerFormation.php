@@ -13,5 +13,5 @@ class ControllerFormation extends BaseController
 
     
 
-	public function formation() { return view('formation'); }
+	public function render() { return view('formation'); }
 }
