@@ -1,0 +1,31 @@
+body {
+	position: relative;
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 1rem;
+}
+
+
+#search {
+	padding: .1em .5em ;
+	margin: 1em auto;
+	display: block;
+	font-size: 150%;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+
+}
+
+section {
+	background-color: #222;
+	padding: 0 1em;
+	box-shadow: 1px 1px #666 , 6px 6px 8px #666;
+	transition: .5s;
+}
+
+section:hover {
+	box-shadow: 1px 1px var(--color-ua) , 6px 6px 8px var(--color-ua);
+
+}
+

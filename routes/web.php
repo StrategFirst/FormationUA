@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/formation', 'App\Http\Controllers\ControllerFormation@render')->name('formation');
+
+Route::get('/option', 'App\Http\Controllers\ControllerOption@render')->name('option');
