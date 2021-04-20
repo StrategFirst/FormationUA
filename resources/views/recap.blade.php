@@ -23,6 +23,7 @@
             <a href="https://www.univ-angers.fr/fr/vie-des-campus/sante.html">SUMPS</a>
             <a href="http://www.fneb.fr/corpo-sciences-angers/">Corpo</a>
             <a href="https://projetcohesion.info/">PC[I]</a>
+            <a href="https://bu.univ-angers.fr/accueil">BU</a>
         </section>
     </body>
 </html> 
