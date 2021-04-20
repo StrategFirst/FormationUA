@@ -21,6 +21,6 @@ class ControllerAdmin extends BaseController
                 return view('adminConnexion');
             }
         }
-            return view('adminConnexion');
+        return view('admin');
     }    
 }
