@@ -12,7 +12,7 @@ class ControllerAdmin extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	public function render() {
-        
+        session_start();
         if(!isset($_SESSION["admin"]))
         {
             if(isset($_GET["token"]) && $_GET["token"] == "OmOOi1Jhsw"){
