@@ -10,6 +10,21 @@
     </head>
 
     <body>
-        <p>Admin</p>
+
+        <button id="run_algo">L</button>
+        <button id="get_result"></button>
+
+        <fieldset title="WIP">
+            <legend> Option </legend>
+            <button> Répartition even / bourrage </button> <!-- 20 20 20 2 OU 17 17 17 17-->
+            <button> Humainement facile </button> <!-- TP1 + TP2 = TD1 & TP3 + TP4 = TD2 & TD1 + TD2 = CM  OU des étudiants peuvent être réparti comme on veut -->
+        </fieldset>
+
+        
+        <fieldset title="WIP">
+            <legend> Insertion </legend>
+            <button> Insertion massive Étudiant </button>
+            <button> Insertion Formation</button>
+        </fieldset>
     </body>
 </html>

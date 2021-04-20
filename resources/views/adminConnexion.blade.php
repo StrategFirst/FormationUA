@@ -10,6 +10,11 @@
     </head>
 
     <body>
-        <p>connexion</p>
+
+        <form action="{{ route('admin') }}" method="GET">
+            <input type="text" name="token" placeholder="token">
+            <input type="submit" name="" value="Envoyer">
+        </form>
+        
     </body>
 </html>
