@@ -16,7 +16,7 @@ class ControllerAdmin extends BaseController
         if(!isset($_SESSION["admin"]))
         {
             if(isset($_GET["token"]) && $_GET["token"] == "OmOOi1Jhsw"){
-                $_SESSION["amdin"] = true ;
+                $_SESSION["admin"] = true ;
             }else{
                 return view('adminConnexion');
             }
