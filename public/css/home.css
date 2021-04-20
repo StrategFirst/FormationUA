@@ -15,6 +15,7 @@ button {
 
 form h1 {
 	position: relative;
+	overflow-wrap: white-space;
 }
 form h1::before {
 	display: block;
