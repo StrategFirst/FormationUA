@@ -19,11 +19,11 @@
 
         <section id="info">
             Vous pouvez retrouver sur le campus : 
-            <a href="https://www.univ-angers.fr/fr/vie-des-campus/sport.html">SUAPS</a>
-            <a href="https://www.univ-angers.fr/fr/vie-des-campus/sante.html">SUMPS</a>
-            <a href="http://www.fneb.fr/corpo-sciences-angers/">Corpo</a>
-            <a href="https://projetcohesion.info/">PC[I]</a>
-            <a href="https://bu.univ-angers.fr/accueil">BU</a>
+            <a href="https://www.univ-angers.fr/fr/vie-des-campus/sport.html" target="_blank">SUAPS</a>
+            <a href="https://www.univ-angers.fr/fr/vie-des-campus/sante.html" target="_blank">SUMPS</a>
+            <a href="http://www.fneb.fr/corpo-sciences-angers/" target="_blank">Corpo</a>
+            <a href="https://projetcohesion.info/" target="_blank">PC[I]</a>
+            <a href="https://bu.univ-angers.fr/accueil" target="_blank">BU</a>
         </section>
     </body>
 </html> 
