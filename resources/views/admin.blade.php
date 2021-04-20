@@ -11,6 +11,8 @@
 
     <body>
 
+        <form action="{{ route('admin') }}" method="GET">
+
         <fieldset>
             <legend>Repartition</legend>
             <button id="algo" >Generer </button>
@@ -30,5 +32,9 @@
             <button> Insertion massive Étudiant </button>
             <button> Insertion Formation</button>
         </fieldset>
+
+        <button name="deco">Deconnexion</button>
+        </form>
+
     </body>
 </html>
