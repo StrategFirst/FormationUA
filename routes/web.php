@@ -22,3 +22,5 @@ Route::get('/formation', 'App\Http\Controllers\ControllerFormation@render')->nam
 Route::get('/option', 'App\Http\Controllers\ControllerOption@render')->name('option');
 
 Route::get('/recap', 'App\Http\Controllers\ControllerRecap@render')->name('recap');
+
+Route::get('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin');
