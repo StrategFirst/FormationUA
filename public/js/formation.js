@@ -16,8 +16,21 @@ window.addEventListener( 'load' , () => {
 
 	// Click
 	Array.from(document.querySelectorAll('main section')).forEach( element => element.addEventListener( 'click' , e => {
-	} );
+		let form = document.createElement('form') ;
+		form.method = 'GET' ;
+		form.action = './option' ;
 
+		let data = document.createElement('input') ; 
+		data.value = 4 ;
+		data.name = 'formation_id' ;
+		data.type = 'text' ;
+
+		form.appendChild(data);
+		form.submit();
+		
+ 	}));
+
+	
 });
 
 
