@@ -11,8 +11,12 @@
 
     <body>
 
-        <button id="run_algo">L</button>
-        <button id="get_result"></button>
+        <fieldset>
+            <legend>Repartition</legend>
+            <button id="algo" >Generer </button>
+            <button id="pdf" >Recuperer </button>
+        </fieldset>
+        
 
         <fieldset title="WIP">
             <legend> Option </legend>
