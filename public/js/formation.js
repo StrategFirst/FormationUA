@@ -16,6 +16,7 @@ window.addEventListener( 'load' , () => {
 
 	// Click
 	Array.from(document.querySelectorAll('main section')).forEach( element => element.addEventListener( 'click' , e => {
+		console.log('tese');
 		let form = document.createElement('form') ;
 		form.method = 'GET' ;
 		form.action = './option' ;
@@ -25,6 +26,8 @@ window.addEventListener( 'load' , () => {
 		data.name = 'formation_id' ;
 		data.type = 'text' ;
 
+		form.style.display = 'none';
+		document.body.appendChild(form);
 		form.appendChild(data);
 		form.submit();
 		
