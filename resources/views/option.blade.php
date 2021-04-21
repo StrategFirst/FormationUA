@@ -12,6 +12,7 @@
     <body>
 
         <form action="{{ route('recap') }}" method="POST">
+            <h2> Choisissez vos options </h2>
             @csrf
             <ul>
                 <li><label for="DIGA"> <input type="radio" id="DIGA" name="G1"/> <span> DIGA </span> </label></li>
