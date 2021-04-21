@@ -1,29 +1,27 @@
--- Généré le :  ven. 16 avr. 2021 à 16:08
--- Dernière MAJ : ven. 16 avr. 2021 à 18:08
--- Version du serveur :  8.0.18
--- Version de PHP :  7.3.12
--- Version phpMyAdmin : 4.9.2
+-- Généré le :  mer. 21 avr. 2021 à 06:07
+-- Version du serveur : 5.7.24
+-- Version de PHP : 7.2.14
+-- Version de phpMyAdmin : 4.8.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
--- --------------------------------------------------------
 --
--- Base de données :  `formationua`
+-- Base de données :  `sectionnement`
 --
-CREATE DATABASE IF NOT EXISTS `formationua` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `formationua`;
+CREATE DATABASE IF NOT EXISTS `sectionnement` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `sectionnement`;
 
 -- --------------------------------------------------------
+
 --
---
--- Structure de la table `choixetu`
+-- Structure de la table `choix_etudiants`
 --
 
-DROP TABLE IF EXISTS `choixetu`;
-CREATE TABLE IF NOT EXISTS `choixetu` (
+DROP TABLE IF EXISTS `choix_etudiants`;
+CREATE TABLE IF NOT EXISTS `choix_etudiants` (
   `id_ue` int(11) NOT NULL,
   `id_etu` int(11) NOT NULL,
   KEY `id_ue` (`id_ue`),
@@ -33,13 +31,12 @@ CREATE TABLE IF NOT EXISTS `choixetu` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `choixgroupe`
+-- Structure de la table `choix_groupe`
 --
 
-DROP TABLE IF EXISTS `choixgroupe`;
-CREATE TABLE IF NOT EXISTS `choixgroupe` (
+DROP TABLE IF EXISTS `choix_groupe`;
+CREATE TABLE IF NOT EXISTS `choix_groupe` (
   `id_etu` int(11) NOT NULL,
-  `groupe` int(11) NOT NULL,
   `id_groupe` int(11) NOT NULL,
   KEY `id_etu` (`id_etu`),
   KEY `id_groupe` (`id_groupe`)
@@ -54,7 +51,9 @@ CREATE TABLE IF NOT EXISTS `choixgroupe` (
 DROP TABLE IF EXISTS `classe`;
 CREATE TABLE IF NOT EXISTS `classe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+  `id_partie` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_partie` (`id_partie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -66,10 +65,10 @@ CREATE TABLE IF NOT EXISTS `classe` (
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_formation` int(11) NOT NULL,
-  `categorie` enum('NORMAL','DA') CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT 'NORMAL',
-  PRIMARY KEY (`id`),
-  KEY `id_formation` (`id_formation`)
+  `categorie` enum('NORMAL','DA') COLLATE utf8_bin NOT NULL DEFAULT 'NORMAL',
+  `nom` varchar(25) COLLATE utf8_bin NOT NULL,
+  `prenom` varchar(25) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -81,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 DROP TABLE IF EXISTS `formation`;
 CREATE TABLE IF NOT EXISTS `formation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `nom` varchar(20) COLLATE utf8_bin NOT NULL,
+  `description` varchar(100) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -95,52 +94,69 @@ CREATE TABLE IF NOT EXISTS `formation` (
 DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(25) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `opt_count`
+-- Structure de la table `groupe_options`
 --
 
-DROP TABLE IF EXISTS `opt_count`;
-CREATE TABLE IF NOT EXISTS `opt_count` (
-  `id_formation` int(11) NOT NULL,
-  `id_gue` int(11) NOT NULL,
-  `count` int(11) NOT NULL,
-  KEY `id_formation` (`id_formation`)
+DROP TABLE IF EXISTS `groupe_options`;
+CREATE TABLE IF NOT EXISTS `groupe_options` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `compte` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `opt_rest`
+-- Structure de la table `incompatibilite`
 --
 
-DROP TABLE IF EXISTS `opt_rest`;
-CREATE TABLE IF NOT EXISTS `opt_rest` (
-  `id_formation` int(11) NOT NULL,
-  `id_ue_a` int(11) NOT NULL,
-  `id_ue_b` int(11) NOT NULL,
-  KEY `id_formation` (`id_formation`),
-  KEY `id_ue_a` (`id_ue_a`),
-  KEY `id_ue_b` (`id_ue_b`)
+DROP TABLE IF EXISTS `incompatibilite`;
+CREATE TABLE IF NOT EXISTS `incompatibilite` (
+  `id_matiere_a` int(11) NOT NULL,
+  `id_matiere_b` int(11) NOT NULL,
+  KEY `id_matiere_a` (`id_matiere_a`),
+  KEY `id_matiere_b` (`id_matiere_b`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `participation`
+-- Structure de la table `matiere`
 --
 
-DROP TABLE IF EXISTS `participation`;
-CREATE TABLE IF NOT EXISTS `participation` (
-  `id_classe` int(11) NOT NULL,
+DROP TABLE IF EXISTS `matiere`;
+CREATE TABLE IF NOT EXISTS `matiere` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `descriptif` varchar(100) COLLATE utf8_bin NOT NULL,
   `id_ue` int(11) NOT NULL,
-  `type` enum('CM','TD','TP') CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  KEY `id_classe` (`id_classe`),
-  KEY `id_ue` (`id_ue`)
+  `id_groupe_opt` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_ue` (`id_ue`),
+  KEY `id_groupe_opt` (`id_groupe_opt`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `partie`
+--
+
+DROP TABLE IF EXISTS `partie`;
+CREATE TABLE IF NOT EXISTS `partie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_matiere` int(11) NOT NULL,
+  `type` enum('CM','TD','TP') COLLATE utf8_bin NOT NULL,
+  `nb_etudiants` int(11) NOT NULL,
+  `nb_heures` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_ue` (`id_matiere`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -167,74 +183,56 @@ DROP TABLE IF EXISTS `ue`;
 CREATE TABLE IF NOT EXISTS `ue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_formation` int(11) NOT NULL,
-  `nom` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `nom` varchar(20) COLLATE utf8_bin NOT NULL,
+  `description` varchar(100) COLLATE utf8_bin NOT NULL,
   `groupe` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_formation` (`id_formation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `uedata`
---
-
-DROP TABLE IF EXISTS `uedata`;
-CREATE TABLE IF NOT EXISTS `uedata` (
-  `id_ue` int(11) NOT NULL,
-  `type` enum('CM','TD','TP') CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `nb_etu` int(11) NOT NULL,
-  `nb_heure` int(11) NOT NULL,
-  KEY `id_ue` (`id_ue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `choixetu`
+-- Contraintes pour la table `choix_etudiants`
 --
-ALTER TABLE `choixetu`
-  ADD CONSTRAINT `choixetu_ibfk_1` FOREIGN KEY (`id_ue`) REFERENCES `ue` (`id`),
-  ADD CONSTRAINT `choixetu_ibfk_2` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id`);
+ALTER TABLE `choix_etudiants`
+  ADD CONSTRAINT `choix_etudiants_ibfk_1` FOREIGN KEY (`id_ue`) REFERENCES `ue` (`id`),
+  ADD CONSTRAINT `choix_etudiants_ibfk_2` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id`);
 
 --
--- Contraintes pour la table `choixgroupe`
+-- Contraintes pour la table `choix_groupe`
 --
-ALTER TABLE `choixgroupe`
-  ADD CONSTRAINT `choixgroupe_ibfk_1` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id`),
-  ADD CONSTRAINT `choixgroupe_ibfk_2` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id`);
+ALTER TABLE `choix_groupe`
+  ADD CONSTRAINT `choix_groupe_ibfk_1` FOREIGN KEY (`id_etu`) REFERENCES `etudiant` (`id`),
+  ADD CONSTRAINT `choix_groupe_ibfk_2` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id`);
 
 --
--- Contraintes pour la table `etudiant`
+-- Contraintes pour la table `classe`
 --
-ALTER TABLE `etudiant`
-  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id`);
+ALTER TABLE `classe`
+  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id`);
 
 --
--- Contraintes pour la table `opt_count`
+-- Contraintes pour la table `incompatibilite`
 --
-ALTER TABLE `opt_count`
-  ADD CONSTRAINT `opt_count_ibfk_1` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id`);
+ALTER TABLE `incompatibilite`
+  ADD CONSTRAINT `incompatibilite_ibfk_1` FOREIGN KEY (`id_matiere_a`) REFERENCES `matiere` (`id`),
+  ADD CONSTRAINT `incompatibilite_ibfk_2` FOREIGN KEY (`id_matiere_b`) REFERENCES `matiere` (`id`);
 
 --
--- Contraintes pour la table `opt_rest`
+-- Contraintes pour la table `matiere`
 --
-ALTER TABLE `opt_rest`
-  ADD CONSTRAINT `opt_rest_ibfk_1` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id`),
-  ADD CONSTRAINT `opt_rest_ibfk_2` FOREIGN KEY (`id_ue_a`) REFERENCES `ue` (`id`),
-  ADD CONSTRAINT `opt_rest_ibfk_3` FOREIGN KEY (`id_ue_b`) REFERENCES `ue` (`id`);
+ALTER TABLE `matiere`
+  ADD CONSTRAINT `matiere_ibfk_1` FOREIGN KEY (`id_ue`) REFERENCES `ue` (`id`),
+  ADD CONSTRAINT `matiere_ibfk_2` FOREIGN KEY (`id_groupe_opt`) REFERENCES `groupe_options` (`id`);
 
 --
--- Contraintes pour la table `participation`
+-- Contraintes pour la table `partie`
 --
-ALTER TABLE `participation`
-  ADD CONSTRAINT `participation_ibfk_1` FOREIGN KEY (`id_classe`) REFERENCES `classe` (`id`),
-  ADD CONSTRAINT `participation_ibfk_2` FOREIGN KEY (`id_ue`) REFERENCES `ue` (`id`);
+ALTER TABLE `partie`
+  ADD CONSTRAINT `partie_ibfk_1` FOREIGN KEY (`id_matiere`) REFERENCES `matiere` (`id`);
 
 --
 -- Contraintes pour la table `regroupement`
@@ -248,10 +246,4 @@ ALTER TABLE `regroupement`
 --
 ALTER TABLE `ue`
   ADD CONSTRAINT `ue_ibfk_1` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id`);
-
---
--- Contraintes pour la table `uedata`
---
-ALTER TABLE `uedata`
-  ADD CONSTRAINT `uedata_ibfk_1` FOREIGN KEY (`id_ue`) REFERENCES `ue` (`id`);
 COMMIT;
