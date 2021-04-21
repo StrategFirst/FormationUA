@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/formation', 'App\Http\Controllers\ControllerFormation@render')->name('formation');
+Route::post('/formation', 'App\Http\Controllers\ControllerFormation@render')->name('formation');
 
-Route::get('/option', 'App\Http\Controllers\ControllerOption@render')->name('option');
+Route::post('/option', 'App\Http\Controllers\ControllerOption@render')->name('option');
 
-Route::get('/recap', 'App\Http\Controllers\ControllerRecap@render')->name('recap');
+Route::post('/recap', 'App\Http\Controllers\ControllerRecap@render')->name('recap');
 
 Route::get('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin');

@@ -11,7 +11,8 @@
     </head>
 
     <body>
-        <form action="{{ route('formation') }}" method="GET">
+        <form action="{{ route('formation') }}" method="POST">
+            @csrf
             <h1> Quel est votre dernier diplôme </h1>
             <select name="precedforma">
                 <option default value=""> Choisissez . . . </option>

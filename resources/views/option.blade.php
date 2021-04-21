@@ -11,7 +11,8 @@
 
     <body>
 
-        <form action="{{ route('recap') }}" method="GET">
+        <form action="{{ route('recap') }}" method="POST">
+            @csrf
             <ul>
                 <li><label for="DIGA"> <input type="radio" id="DIGA" name="G1"/> <span> DIGA </span> </label></li>
                 <li><label for="ISI"> <input type="radio" id="ISI" name="G1"/> <span> ISI </span> </label></li>

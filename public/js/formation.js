@@ -17,8 +17,12 @@ window.addEventListener( 'load' , () => {
 	// Click
 	Array.from(document.querySelectorAll('main section')).forEach( element => element.addEventListener( 'click' , e => {
 		let form = document.createElement('form') ;
-		form.method = 'GET' ;
+		form.method = 'POST' ;
 		form.action = './option' ;
+
+		let token = document.querySelector('#_token');
+		token.parentNode.removeChild(token);
+		form.appendChild(token);
 
 		let data = document.createElement('input') ; 
 		data.value = 4 ;
