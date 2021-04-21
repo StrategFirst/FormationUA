@@ -9,12 +9,18 @@ body {
 #search {
 	padding: .1em .5em ;
 	margin: 1em auto;
-	display: block;
+	display: inline-block;
 	font-size: 150%;
 	outline: none;
 	border: none;
 	border-radius: 5px;
+	min-width: 40%;
+	transition: 1s;
+}
 
+#search:hover, #search:focus {
+	padding: .2em .5em;
+	min-width: 70%;
 }
 
 section {
@@ -22,6 +28,7 @@ section {
 	padding: 0 1em;
 	box-shadow: 1px 1px #666 , 6px 6px 8px #666;
 	transition: .5s;
+	cursor: pointer;
 }
 
 section:hover {
@@ -29,3 +36,17 @@ section:hover {
 
 }
 
+nav:after {
+  content:'🔍';
+  display: inline-block;
+  transform: translate(-200%,0);
+  height: 100%; 
+  padding: .1em 0;
+  margin: 1em 0;
+  cursor: search;
+}
+
+nav {
+  text-align: center;
+  position: relative;
+}
