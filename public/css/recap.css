@@ -1,0 +1,13 @@
+body {
+	width: clamp(60%, 25rem, 100%);
+	margin: auto;
+}
+
+#info :is(ul, li) {
+	list-style-type: square;
+	margin: .7rem .5rem ;
+}
+
+#info a {
+	color: var(--color-ua);
+}
