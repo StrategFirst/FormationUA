@@ -1,8 +1,12 @@
+/* ensure the body take at least the whole window height */
+body {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	min-height: 100vh;
+}
+
 form {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
 	text-align: center;
 }
 
@@ -13,10 +17,12 @@ button {
 	margin: 1em;
 }
 
+/* make sure the text keep on one line to avoid aesthetics issues */
 form h1 {
 	position: relative;
 	overflow-wrap: white-space;
 }
+
 form h1::before {
 	display: block;
 	content: '';
