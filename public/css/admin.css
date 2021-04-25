@@ -1,0 +1,30 @@
+fieldset {
+	width: 25rem;
+}
+
+button {
+	cursor: pointer;
+	transition: .2s;
+}
+
+fieldset button {
+	background-color: black;
+	border: 
+		groove 2px grey
+		groove 2px grey
+		groove 2px lightgrey
+		groove 2px lightgrey;
+	padding: .2em .4em;
+	color: var(--color-ua);}
+
+
+button[name="deco"] {
+	float: right;
+	margin: 1em;
+	padding: .2em .5em;
+	border: none;
+}
+
+button[name="deco"]:hover {
+	background-color: var(--color-ua);
+}

@@ -5,14 +5,15 @@
         <title>Laravel</title>
 
         <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
-        
-
+        <link rel="stylesheet" href="{{asset('css/admin.css')}}"/>
     </head>
 
     <body>
 
         <form action="{{ route('admin') }}" method="GET">
 
+        <button name="deco">Deconnexion</button>
+        
         <fieldset>
             <legend>Repartition</legend>
             <button id="algo" >Generer </button>
@@ -33,7 +34,6 @@
             <button> Insertion Formation</button>
         </fieldset>
 
-        <button name="deco">Deconnexion</button>
         </form>
 
     </body>
