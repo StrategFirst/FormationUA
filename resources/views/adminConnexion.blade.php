@@ -10,8 +10,9 @@
     </head>
 
     <body>
-        <form action="{{ route('admin') }}" method="GET">
-            <input type="text" name="token" placeholder="Token">
+        <form action="{{ route('admin') }}" method="POST">
+            @csrf
+            <input type="text" name="token" placeholder="Token" autocomplete="off">
             <input type="submit" name="" value="Envoyer">
         </form>
     </body>

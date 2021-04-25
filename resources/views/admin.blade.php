@@ -10,10 +10,10 @@
 
     <body>
 
-        <form action="{{ route('admin') }}" method="GET">
-
+        <form action="{{ route('admin') }}" method="POST">
+        @csrf
         <button name="deco">Deconnexion</button>
-        
+
         <fieldset>
             <legend>Repartition</legend>
             <button id="algo" >Generer </button>

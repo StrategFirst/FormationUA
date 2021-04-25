@@ -23,4 +23,6 @@ Route::post('/option', 'App\Http\Controllers\ControllerOption@render')->name('op
 
 Route::post('/recap', 'App\Http\Controllers\ControllerRecap@render')->name('recap');
 
+Route::post('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin');
+
 Route::get('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin');

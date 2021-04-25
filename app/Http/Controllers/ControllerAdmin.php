@@ -13,13 +13,13 @@ class ControllerAdmin extends BaseController
 
 	public function render() {
         session_start();
-        if(isset($_GET["deco"])) {
+        if(isset($_POST["deco"])) {
             session_destroy();
             return view('welcome');
         } else {
             if(!isset($_SESSION["admin"]))
             {
-                if(isset($_GET["token"]) && $_GET["token"] == "OmOOi1Jhsw"){
+                if(isset($_POST["token"]) && $_POST["token"] == "OmOOi1Jhsw"){
                     $_SESSION["admin"] = true ;
                 }else{
                     return view('adminConnexion');
