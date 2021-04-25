@@ -15,7 +15,7 @@ class ControllerAdmin extends BaseController
         session_start();
         if(isset($_POST["deco"])) {
             session_destroy();
-            return view('welcome');
+            return redirect()->to('..');
         } else {
             if(!isset($_SESSION["admin"]))
             {
