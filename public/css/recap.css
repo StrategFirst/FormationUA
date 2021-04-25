@@ -1,6 +1,11 @@
 body {
-	width: clamp(60%, 25rem, 100%);
+	width: clamp(30%, 30rem, Calc(100% - 30px));
 	margin: auto;
+}
+
+section {
+	display: block;
+	margin: auto 0;
 }
 
 #info :is(ul, li) {

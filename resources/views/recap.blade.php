@@ -10,6 +10,7 @@
     </head>
 
     <body>
+        <div>
         <h2> Récapitulatif </h2>
         <p>Vous avez choisi <strong>Licence 3 INFORMATIQUE</strong></p>
         <p>Avec les options suivantes : 
