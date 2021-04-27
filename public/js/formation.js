@@ -25,7 +25,7 @@ window.addEventListener( 'load' , () => {
 		form.appendChild(token);
 
 		let data = document.createElement('input') ; 
-		data.value = 4 ;
+		data.value = e.currentTarget.id;
 		data.name = 'formation_id' ;
 		data.type = 'text' ;
 
@@ -34,7 +34,7 @@ window.addEventListener( 'load' , () => {
 		form.appendChild(data);
 		form.submit();
 
- 	}));
+ 	},false));
 
 	
 });
