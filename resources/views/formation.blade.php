@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr-FR" dir="ltr">
     <head>
@@ -11,6 +12,7 @@
     </head>
 
     <body>
+        <?php print_r($formation) ?>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="_token">
         <nav>
             <input type="search" name="" id="search"/>
