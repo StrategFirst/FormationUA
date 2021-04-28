@@ -2,16 +2,16 @@ body {
 	width: clamp(60%, 25rem, 100%);
 	margin: auto;
 }
-ul {
+form ul {
 	list-style: none;
 	margin: 3rem;
 }
 
-ul input {
+form ul input {
 	display: none;
 }
 
-ul label span {
+form ul label span {
 	background-color: lightgrey;
 	padding: 1em;
 	color: black;
@@ -19,19 +19,19 @@ ul label span {
 	cursor: pointer;
 }
 
-ul label:hover span {
+form ul label:hover span {
 	background-color: grey;
 }
 
-ul label input:checked ~ span {
+form ul label input:checked ~ span {
 	background-color: var(--color-ua);
 }
 
-ul label:hover input:checked ~ span {
+form ul label:hover input:checked ~ span {
 	background-color: #009BBF;
 }
 
-ul li{
+form ul li{
 	display: inline-block;
 }
 

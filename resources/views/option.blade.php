@@ -22,12 +22,20 @@
                     echo "$nl";
                     echo "$i1<section>$nl";
                     echo "$i2<h3> Bloc n° {$numero} </h3>$nl";
+                    echo "$i2<details>$nl";
                     foreach($block as $ue) {
                         echo "$i2<article>$nl ";
                         echo "$i3<h4> {$ue->nom} </h4>$nl";
-                        echo "$i3<details> {$ue->description} </details>$nl";
+                        echo "$i3<p> {$ue->description} </p>$nl";
+                        echo "$i3<h6> Matières : </h6>$nl";
+                        echo "$i3<ul>";
+                        foreach($matieres[$ue->id] as $matiere) {
+                            echo "$i3$i3<li>{$matiere->descriptif}</li>$nl";
+                        }
+                        echo "$i3</ul>";
                         echo "$i2</article>$nl";
                     }
+                    echo "$i2</details>$nl";
                     echo "$i1</section>$nl$nl";
                 }
             ?>

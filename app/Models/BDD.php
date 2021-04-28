@@ -20,7 +20,7 @@ class BDD extends Model
     }
 
     public static function get_matieres(int $ue_id) {
-        return DB::select("SELECT * FROM matiere WHERE mat.id_ue = :id_ue",['id_ue'=>$ue_id]);
+        return DB::select("SELECT * FROM matiere WHERE id_ue = :id_ue",['id_ue'=>$ue_id]);
     }
 
 }
