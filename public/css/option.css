@@ -2,6 +2,10 @@ body {
 	width: clamp(60%, 25rem, 100%);
 	margin: auto;
 }
+
+form {
+	user-select: none;
+}
 form ul {
 	list-style: none;
 	margin: 3rem;
