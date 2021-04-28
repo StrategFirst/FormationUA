@@ -42,6 +42,7 @@
         </main>
 
         <form action="{{ route('recap') }}" method="POST">
+            <input type="hidden" value="<?= $_POST['formation_id'] ?>"/>
             <h2> Choisissez vos options </h2>
             @csrf
             <ul>
