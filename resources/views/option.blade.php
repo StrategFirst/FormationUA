@@ -46,13 +46,13 @@
             <h2> Choisissez vos options </h2>
             @csrf
             <ul>
-                <li><label for="DIGA"> <input type="radio" id="DIGA" name="G1"/> <span> DIGA </span> </label></li>
-                <li><label for="ISI"> <input type="radio" id="ISI" name="G1"/> <span> ISI </span> </label></li>
+                <li><label for="DIGA"> <input type="checkbox" id="DIGA" name="G1"/> <span> DIGA </span> </label></li>
+                <li><label for="ISI"> <input type="checkbox" id="ISI" name="G1"/> <span> ISI </span> </label></li>
             </ul>
             <ul>
-                <li><label for="PY"> <input type="radio" id="PY" name="G2"/> <span> PY </span> </label></li>
-                <li><label for="SI"> <input type="radio" id="SI" name="G2"/> <span> SI </span> </label></li>
-                <li><label for="A"> <input type="radio" id="A" name="G2"/> <span> A </span> </label></li>
+                <li><label for="PY"> <input type="checkbox" id="PY" name="G2"/> <span> PY </span> </label></li>
+                <li><label for="SI"> <input type="checkbox" id="SI" name="G2"/> <span> SI </span> </label></li>
+                <li><label for="A"> <input type="checkbox" id="A" name="G2"/> <span> A </span> </label></li>
             </ul>
             
             <button>Envoyer</button>
