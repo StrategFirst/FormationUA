@@ -10,6 +10,7 @@
     </head>
 
     <body>
+        <pre> <?php print_r($test) ?> </pre>
         <main>
             <h2> Enseignement </h2>
             <?php
@@ -28,11 +29,11 @@
                         echo "$i3<h4> {$ue->nom} </h4>$nl";
                         echo "$i3<p> {$ue->description} </p>$nl";
                         echo "$i3<h6> Matières : </h6>$nl";
-                        echo "$i3<ul>";
+                        echo "$i3<ul>$nl";
                         foreach($matieres[$ue->id] as $matiere) {
-                            echo "$i3$i3<li>{$matiere->descriptif}</li>$nl";
+                            echo "$i3$i1<li>{$matiere->descriptif}</li>$nl";
                         }
-                        echo "$i3</ul>";
+                        echo "$i3</ul>$nl";
                         echo "$i2</article>$nl";
                     }
                     echo "$i2</details>$nl";
@@ -45,6 +46,7 @@
             <input type="hidden" value="<?= $_POST['formation_id'] ?>"/>
             <h2> Choisissez vos options </h2>
             @csrf
+            <!--
             <ul>
                 <li><label for="DIGA"> <input type="checkbox" id="DIGA" name="G1"/> <span> DIGA </span> </label></li>
                 <li><label for="ISI"> <input type="checkbox" id="ISI" name="G1"/> <span> ISI </span> </label></li>
@@ -54,7 +56,7 @@
                 <li><label for="SI"> <input type="checkbox" id="SI" name="G2"/> <span> SI </span> </label></li>
                 <li><label for="A"> <input type="checkbox" id="A" name="G2"/> <span> A </span> </label></li>
             </ul>
-            
+            -->
             <button>Envoyer</button>
         </form>
         

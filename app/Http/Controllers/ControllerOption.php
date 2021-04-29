@@ -26,5 +26,5 @@ class ControllerOption extends BaseController
             array_push( $ue_liste[ $ue->bloc ] , $ue );
             $mat_liste[ $ue->id ] = BDD::get_matieres( $ue->id );
         }
-        return view('option',['ues'=>$ue_liste,'matieres'=>$mat_liste]); }
+        return view('option',['ues'=>$ue_liste,'matieres'=>$mat_liste,'test'=>BDD::get_matieres_choix($_POST["formation_id"])]); }
 }
