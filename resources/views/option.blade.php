@@ -55,7 +55,7 @@
         </main>
 
         <form action="{{ route('recap') }}" method="POST">
-            <input type="hidden" value="<?= $_POST['formation_id'] ?>"/>
+            <input type="hidden" name="id_formation" value="<?= $_POST['formation_id'] ?>"/>
             <h2> Choisissez vos options </h2>
             <details id="incompatible_desc">
             <ul> <?= join('',array_map(function ($in){return "<li>$in</li>";},$incompatible)) ?> </ul>
@@ -66,7 +66,7 @@
                 echo '<div class="choix-groupe choix-count-'.$ele['compte'].'">';
                 echo "<i> Requiert {$ele['compte']} choix </li>";
                 foreach($ele['matieres'] as $id => $matiere) {
-                    echo '<label for="Opt'.$id.'"> <input type="checkbox" id="Opt'.$id.'" name="'.$id.'"/> <span class="choix"> '.$matiere['nom'].' </span> </label>';
+                    echo '<label for="Opt'.$id.'"> <input type="checkbox" id="Opt'.$id.'" name="opt_choix[]" value="'.$id.'"/> <span class="choix"> '.$matiere['nom'].' </span> </label>';
                 }
                 echo '</div>';
             }
