@@ -7,6 +7,19 @@
         <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
         <link rel="stylesheet" href="{{asset('css/option.css')}}"/>
 
+        <script>
+            let incompatible = {
+            <?php
+                foreach($choix as $ele) {
+                    foreach($ele['matieres'] as $id => $matiere) {
+                        echo '"'.$id.'": [' . join($matiere['incompatible'] , ',') . '],';
+                    }
+                }
+            ?>
+            };
+        </script>
+        <script defer src="{{asset('js/incompatibilite.js')}}"></script>
+
     </head>
 
     <body>
@@ -44,12 +57,16 @@
         <form action="{{ route('recap') }}" method="POST">
             <input type="hidden" value="<?= $_POST['formation_id'] ?>"/>
             <h2> Choisissez vos options </h2>
+            <details id="incompatible_desc">
+            <ul> <?= join('',array_map(function ($in){return "<li>$in</li>";},$incompatible)) ?> </ul>
+            </details>
             @csrf
             <?php
             foreach($choix as $ele) {
-                echo '<div class="choix-groupe">';
+                echo '<div class="choix-groupe choix-count-'.$ele['compte'].'">';
+                echo "<i> Requiert {$ele['compte']} choix </li>";
                 foreach($ele['matieres'] as $id => $matiere) {
-                    echo '<label for="'.$id.'"> <input type="checkbox" id="'.$id.'" name="'.$id.'"/> <span class="choix"> '.$matiere['nom'].' </span> </label>';
+                    echo '<label for="Opt'.$id.'"> <input type="checkbox" id="Opt'.$id.'" name="'.$id.'"/> <span class="choix"> '.$matiere['nom'].' </span> </label>';
                 }
                 echo '</div>';
             }

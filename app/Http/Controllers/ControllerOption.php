@@ -18,7 +18,8 @@ class ControllerOption extends BaseController
         return view( 'option' , [
             'ues' => $ue_liste ,
             'matieres' => $mat_liste , 
-            'choix' => BDD::get_matieres_choix($_POST["formation_id"]) 
+            'choix' => BDD::get_matieres_choix($_POST["formation_id"]),
+            'incompatible' => BDD::get_matieres_incompatible_par_formation_text($_POST["formation_id"])
         ] );
     }
 }
