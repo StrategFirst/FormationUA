@@ -12,15 +12,15 @@ class BDD extends Model
     use HasFactory;
 
     public static function get_formations() {
-        return DB::select("SELECT * FROM formation ORDER BY nom;" , []);
+        return DB::select( "SELECT * FROM formation ORDER BY nom;" , [] );
     }
 
     public static function get_ue(int $formation_id) {
-        return DB::select("SELECT * FROM ue WHERE id_formation = :id_form",['id_form'=>$formation_id]);
+        return DB::select( "SELECT * FROM ue WHERE id_formation = :id_form" , ['id_form'=>$formation_id] );
     }
 
     public static function get_matieres(int $ue_id) {
-        return DB::select("SELECT * FROM matiere WHERE id_ue = :id_ue",['id_ue'=>$ue_id]);
+        return DB::select( "SELECT * FROM matiere WHERE id_ue = :id_ue" , ['id_ue'=>$ue_id] );
     }
 
     public static function get_matieres_choix(int $formation_id) {
@@ -50,5 +50,19 @@ class BDD extends Model
         $a = array_map( function($v){return $v->id_matiere_a;} , DB::select("SELECT id_matiere_a FROM incompatibilite WHERE id_matiere_b = :id_mat",['id_mat'=>$matiere_id]) );
         $b = array_map( function($v){return $v->id_matiere_b;} , DB::select("SELECT id_matiere_b FROM incompatibilite WHERE id_matiere_a = :id_mat",['id_mat'=>$matiere_id]) );
         return array_unique(array_merge($a,$b));
+    }
+
+    public static function get_matiere_par_ue(int $formation_id) {
+        // Transformation de la reqûete SQL en un format utilisable aisément par la vue
+        $ue_liste = [];
+        $mat_liste = [];
+        foreach(BDD::get_ue($formation_id) as $ue) {
+            if( ! isset($ue_liste[ $ue->bloc ]) ) {
+                $ue_liste[ $ue->bloc ] = [];
+            }
+            array_push( $ue_liste[ $ue->bloc ] , $ue );
+            $mat_liste[ $ue->id ] = BDD::get_matieres( $ue->id );
+        }
+        return [$ue_liste,$mat_liste];
     }
 }

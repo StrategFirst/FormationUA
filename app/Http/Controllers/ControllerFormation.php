@@ -13,7 +13,9 @@ class ControllerFormation extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    
-
-	public function render() { return view('formation',['formation'=>BDD::get_formations()]); }
+	public function render() { 
+		return view( 'formation' , [
+			'formation' => BDD::get_formations()
+		] );
+	}
 }

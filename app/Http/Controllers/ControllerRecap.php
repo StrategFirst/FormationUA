@@ -11,7 +11,5 @@ class ControllerRecap extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    
-
 	public function render() { return view('recap'); }
 }

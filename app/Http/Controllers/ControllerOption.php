@@ -13,18 +13,12 @@ class ControllerOption extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    
-
-	public function render() { 
-        // Transformation de la reqûete SQL en un format utilisable aisément par la vue
-        $ue_liste = [];
-        $mat_liste = [];
-        foreach(BDD::get_ue($_POST["formation_id"]) as $ue) {
-            if( ! isset($ue_liste[ $ue->bloc ]) ) {
-                $ue_liste[ $ue->bloc ] = [];
-            }
-            array_push( $ue_liste[ $ue->bloc ] , $ue );
-            $mat_liste[ $ue->id ] = BDD::get_matieres( $ue->id );
-        }
-        return view('option',['ues'=>$ue_liste,'matieres'=>$mat_liste,'choix'=>BDD::get_matieres_choix($_POST["formation_id"])]); }
+	public function render() {
+        [$ue_liste,$mat_liste] = BDD::get_matiere_par_ue($_POST["formation_id"]);
+        return view( 'option' , [
+            'ues' => $ue_liste ,
+            'matieres' => $mat_liste , 
+            'choix' => BDD::get_matieres_choix($_POST["formation_id"]) 
+        ] );
+    }
 }
