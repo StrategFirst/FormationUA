@@ -39,8 +39,9 @@ class BDD extends Model
                 ];
             }
             $id_groupe_opt = $mat->id_groupe_opt;
-            $mat = [ 'id' => $mat->id , 'nom' => $mat->descriptif , 'incompatible' => BDD::get_matieres_incompatible($mat->id) ];
-            array_push( $result[ $id_groupe_opt ]['matieres'] , $mat );
+            $id = $mat->id;
+            $mat = [ 'nom' => $mat->descriptif , 'incompatible' => BDD::get_matieres_incompatible($mat->id) ];
+            $result[ $id_groupe_opt ]['matieres'][$id] = $mat ;
         }
         return $result;
     }

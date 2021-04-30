@@ -3,48 +3,44 @@ body {
 	margin: auto;
 }
 
-form {
-	user-select: none;
-}
-form ul {
-	list-style: none;
-	margin: 3rem;
-}
-
-form ul input {
-	display: none;
-}
-
-form ul label span {
-	background-color: lightgrey;
-	padding: 1em;
-	color: black;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-form ul label:hover span {
-	background-color: grey;
-}
-
-form ul label input:checked ~ span {
-	background-color: var(--color-ua);
-}
-
-form ul label:hover input:checked ~ span {
-	background-color: #009BBF;
-}
-
-form ul li{
-	display: inline-block;
-}
-
 button {
 	display: block;
-	margin: auto;
+	margin: 1rem auto;
 	cursor: pointer;
+	font-size: 170%;
+	border: none;
+	outline: none;
 }
 
 h2 {
 	text-align: center;
+}
+
+main section h3 {
+	color: var(--color-ua);
+}
+
+form input[type="checkbox"] {
+	display: none;
+}
+
+.choix-groupe {
+	border: 1px solid white;
+}
+.choix {
+	padding: .2em;
+	margin: .2em;
+	background-color: var(--color-ua);
+	display: block;
+	transition: .5s;
+	cursor: pointer;
+}
+
+.choix:hover {
+	filter: grayscale(90%) ;
+}
+
+input:checked ~ .choix {
+	margin-left: 1rem;
+	background-color: limegreen;
 }
