@@ -7,9 +7,14 @@ button {
 	display: block;
 	margin: 1rem auto;
 	cursor: pointer;
-	font-size: 170%;
+	font-size: 14pt;
 	border: none;
 	outline: none;
+	padding: .1em 1em;
+	border-radius: .6rem;
+	background-color: white;
+	color: black;
+	box-shadow: .1em .1em var(--color-ua), .2em .2em 10pt var(--color-ua);
 }
 
 h2 {

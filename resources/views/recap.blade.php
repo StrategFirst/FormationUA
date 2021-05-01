@@ -2,7 +2,7 @@
 <html lang="fr-FR" dir="ltr">
     <head>
         <meta charset="utf-8"/>
-        <title>Laravel</title>
+        <title> Formation UA </title>
 
         <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
         <link rel="stylesheet" href="{{asset('css/recap.css')}}"/>
@@ -47,5 +47,10 @@
         </section>
 
         <p> Votre groupe vous sera communiquer prochainement </p>
+
+        <pre>
+        <?php print_r($_POST); ?>
+
+        </pre>
     </body>
 </html> 

@@ -3,7 +3,7 @@
 <html lang="fr-FR" dir="ltr">
     <head>
         <meta charset="utf-8"/>
-        <title>Laravel</title>
+        <title> Formation UA </title>
 
         <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
         <link rel="stylesheet" href="{{asset('css/formation.css')}}"/>
