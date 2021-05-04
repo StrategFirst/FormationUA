@@ -50,3 +50,7 @@ nav {
   text-align: center;
   position: relative;
 }
+
+section ~ section {
+	margin-top: 2rem;
+}
