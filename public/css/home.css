@@ -1,4 +1,4 @@
-/* ensure the body take at least the whole window height */
+/* Formulaire centrer sur la page */
 body {
 	display: grid;
 	justify-content: center;
@@ -17,7 +17,7 @@ button {
 	margin: 1em;
 }
 
-/* make sure the text keep on one line to avoid aesthetics issues */
+/* Détails esthétique sur le formulaire */
 form h1 {
 	position: relative;
 	overflow-wrap: white-space;
@@ -39,4 +39,10 @@ button {
 	background: none;
 	cursor: pointer;
 	color: #767676;
+}
+
+select {
+	font-size: 130%;
+	padding: .2em 1em;
+	cursor: pointer;
 }
