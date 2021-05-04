@@ -13,7 +13,7 @@
     <body>
         <form action="{{ route('formation') }}" method="POST">
             @csrf
-            <h1> Quel est votre dernier diplôme </h1>
+            <h1 class="main-title"> Quel est votre dernier diplôme </h1>
             <select name="precedforma">
                 <option default value=""> Choisissez . . . </option>
                 <option value="bac"> Baccalauréat </option>

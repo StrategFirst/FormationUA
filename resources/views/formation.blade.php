@@ -12,6 +12,7 @@
     </head>
 
     <body>
+        <h1 class="main-title"> Choisissez une formation </h1>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="_token">
         <nav>
             <input type="search" name="" id="search"/>
