@@ -14,11 +14,11 @@ et permettre la création et répartition des étudiants dans différents groupe
 		- [x] Choix option
 		- [x] Récapitulatif
 		- [x] Empécher la saisie d'option "impossible"
-	- [ ] Back-end
+	- [x] Back-end
 		- [x] Afficher les options en fonction de la formation
-		- [ ] Afficher le récapitulatif en fonction de la formation et des options
+		- [x] Afficher le récapitulatif en fonction de la formation et des options
 		- [ ] Vérifier que les formations et options sont bien compatibles
-		- [ ] Inséré dans la BDD les données de l'étudiant
+		- [x] Inséré dans la BDD les données de l'étudiant
 		- [ ] Trié les formations en fonction de la précédente formation éffectuer
 		- [ ] Empécher les accès aux pages via l'url direct pour ignoré des étapes
 		- [ ] Changer les headers des réponses

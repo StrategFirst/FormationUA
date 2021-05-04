@@ -12,12 +12,16 @@
     <body>
         <div>
         <h2> Récapitulatif </h2>
-        <p>Vous avez choisi <strong>Licence 3 INFORMATIQUE</strong></p>
+        <p>Vous avez choisi <strong><?= $nom_formation ?></strong></p>
         <p>Avec les options suivantes : 
-        <ul>
-            <li>DIGA</li>
-            <li>SI</li>
-        </ul></p>
+            <ul>
+                <?php
+                    foreach($liste_option as $opt) {
+                        echo "<li> $opt </li>";
+                    }
+                ?>
+            </ul>
+        </p>
 
         <section id="info">
             Vous pouvez retrouver sur le campus : 
@@ -48,9 +52,5 @@
 
         <p> Votre groupe vous sera communiquer prochainement </p>
 
-        <pre>
-        <?php print_r($_POST); ?>
-
-        </pre>
     </body>
 </html> 
