@@ -11,7 +11,7 @@
 
     <body>
         <div>
-        <h2> Récapitulatif </h2>
+        <h1 class="main-title"> Récapitulatif </h1>
         <p>Vous avez choisi <strong><?= $nom_formation ?></strong></p>
         <p>Avec les options suivantes : 
             <ul>
