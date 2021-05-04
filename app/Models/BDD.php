@@ -90,4 +90,51 @@ class BDD extends Model
         }
         return [$ue_liste,$mat_liste];
     }
+
+    public static function get_nom_choix_par_id(array $id_matiere_choix_liste) {
+        return array_map(
+            function ($id) { 
+                return DB::select(
+                    "SELECT descriptif FROM matiere WHERE id = :id_mat",
+                    ['id_mat'=>$id]
+                ) [0]->descriptif ;
+            }
+            ,
+            $id_matiere_choix_liste
+        );
+    }
+
+    public static function get_nom_formation_par_id(int $id_formation) {
+        return DB::select(
+            "SELECT nom FROM formation WHERE id = :id_form" ,
+            ['id_form' => $id_formation]
+        ) [0]->nom ;
+    }
+
+    public static function verification_coherence(int $formation_id,array $choix_matiere_id_list) {
+        //permet de vérifier que les matières choisi appartiennent bien à la formation
+        foreach($choix_matiere_id_list as $choix_matiere_id) {
+            $formation_id_matiere = DB::select( 
+            "SELECT ue.id_formation
+             FROM ue
+                JOIN matiere AS m
+                ON m.id_ue = ue.id
+             WHERE m.id = :id_mat;" , 
+            ['id_mat' => $choix_matiere_id] )[0]->id_formation;
+            if($formation_id_matiere != $formation_id) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static function set_etudiant(int $formation_id,array $choix_matiere_id_list) {
+		DB::insert('INSERT INTO etudiant(nom,prenom) VALUES ("NTest","PTest")');
+		$id = DB::select('SELECT id AS LastID FROM etudiant WHERE id = @@identity')[0]->LastID;
+		DB::insert('INSERT INTO inscrit_formation(id_etudiant,id_formation) VALUES (:id_etu,:id_form)',['id_etu'=>$id,'id_form'=>$formation_id]);
+		foreach($choix_matiere_id_list as $choix) {
+			DB::insert('INSERT INTO choix_etudiants(id_etu,id_matiere) VALUES (:id_etu,:id_mat)',['id_etu'=>$id,'id_mat'=>$choix]);
+		}
+
+    }
 }

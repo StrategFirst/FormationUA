@@ -1,0 +1,21 @@
+#brokengears {
+	height: 75vh;
+}
+
+h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: Impact;
+	letter-spacing: 5px;
+	text-shadow: 
+		 2px  2px 2px black,
+		-2px  2px 2px black,
+		 2px -2px 2px black,
+		-2px -2px 2px black
+		;
+		text-align: center;
+		width: 100vw;
+		margin: auto 0;
+}
