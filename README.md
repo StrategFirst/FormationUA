@@ -19,8 +19,8 @@ et permettre la création et répartition des étudiants dans différents groupe
 		- [x] Afficher le récapitulatif en fonction de la formation et des options
 		- [x] Vérifier que les formations et options sont bien compatibles
 		- [x] Inséré dans la BDD les données de l'étudiant
-		- [ ] Trié les formations en fonction de la précédente formation éffectuer
-		- [ ] Empécher les accès aux pages via l'url direct pour ignoré des étapes
+		- [x] Trié les formations en fonction de la précédente formation éffectuer
+		- [x] Empécher les accès aux pages via l'url direct pour ignoré des étapes
 		- [ ] Changer les headers des réponses
 	- [ ] Faire des test de sécurité (insertion sql etc)
 - [ ] Parti "admin"
