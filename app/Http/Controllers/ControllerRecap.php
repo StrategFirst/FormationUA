@@ -14,15 +14,15 @@ class ControllerRecap extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 	public function render() {
+		if(!isset($_POST['opt_choix'])) { $_POST['opt_choix'] = [];}
 		if(
-			isset($_POST["opt_choix"]) &&
 			isset($_POST['id_formation']) &&
 			BDD::verification_coherence($_POST['id_formation'],$_POST['opt_choix'])
 		) {
-			BDD::set_etudiant($_POST["opt_choix"],$_POST["id_formation"]);
+			BDD::set_etudiant($_POST["id_formation"],$_POST["opt_choix"]);
 			return view('recap',[
-				'nom_formation' => get_nom_formation_par_id($_POST['id_formation']),
-				'liste_option' => get_nom_choix_par_id($_POST['opt_choix'])
+				'nom_formation' => BDD::get_nom_formation_par_id($_POST['id_formation']),
+				'liste_option' => BDD::get_nom_choix_par_id($_POST['opt_choix'])
 			]);
 		} else {
 			return response(view('errors.pattern',['err' => '406 - Parameters missing or not acceptable']),406);

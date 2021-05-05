@@ -112,7 +112,7 @@ class BDD extends Model
     }
 
     public static function verification_coherence(int $formation_id,array $choix_matiere_id_list) {
-        //permet de vérifier que les matières choisi appartiennent bien à la formation
+        //vérification appartenance matière à la formation
         foreach($choix_matiere_id_list as $choix_matiere_id) {
             $formation_id_matiere = DB::select( 
             "SELECT ue.id_formation
@@ -125,6 +125,36 @@ class BDD extends Model
                 return false;
             }
         }
+        //vérification du bon nombre de choix pour la formation
+        $attendu = DB::select(
+        "SELECT groupe_options.id AS id_groupe, groupe_options.compte AS nmb
+        FROM groupe_options
+            JOIN matiere AS mat
+            ON groupe_options.id = mat.id_groupe_opt
+            JOIN ue
+            ON mat.id_ue = ue.id
+        WHERE ue.id_formation = :id_form
+        GROUP BY id_groupe,nmb;",
+        ['id_form' => $formation_id] );
+        $donner = array_count_values(array_map( function ($mat_id) { return DB::select(
+        "SELECT groupe_options.* 
+        FROM groupe_options AS groupe_options
+            JOIN matiere AS mat
+            ON groupe_options.id = mat.id_groupe_opt
+        WHERE mat.id = :id_mat;",
+        ['id_mat' => $mat_id])[0]->id; } ,
+        $choix_matiere_id_list ));
+        foreach($attendu as $attente) {
+            if($donner[ $attente->id_groupe ] != $attente->nmb) {
+                return false;
+            }
+        }
+        //vérification de la présence d'incompatibilité
+        foreach($choix_matiere_id_list as $id) {
+            if(count(array_intersect(BDD::get_matieres_incompatible($id),$choix_matiere_id_list)) != 0) {
+                return false;
+            }
+        } 
         return true;
     }
 
