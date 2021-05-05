@@ -21,7 +21,7 @@ et permettre la création et répartition des étudiants dans différents groupe
 		- [x] Inséré dans la BDD les données de l'étudiant
 		- [x] Trié les formations en fonction de la précédente formation éffectuer
 		- [x] Empécher les accès aux pages via l'url direct pour ignoré des étapes
-		- [ ] Changer les headers des réponses
+		- [x] Changer les headers des réponses
 	- [ ] Faire des test de sécurité (insertion sql etc)
 - [ ] Parti "admin"
 	- [x] Déterminer la structure
