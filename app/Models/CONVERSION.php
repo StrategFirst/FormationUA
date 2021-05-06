@@ -41,6 +41,28 @@ class CONVERSION extends Model
             fputcsv( $suivi_fichier , $ligne );
         }
         fclose($suivi_fichier);
+
+
+        
+        $contrainte = array_map( function($tuple) {
+            return [ $tuple->id_mat , $tuple->type , $tuple->max_etu ];      
+        }
+        ,
+            DB::select(
+                "SELECT 
+                    partie.id_sous_matiere AS id_mat
+                    partie.type AS type
+                    partie.nb_etudiants AS max_etu
+                FROM partie;"
+                ,[]
+            )
+        
+        );
+        $contrainte_fichier = fopen( '../repartition/contrainte.csv' , 'w+' );
+        foreach( $contrainte as $ligne ) {
+            fputcsv( $contrainte_fichier , $ligne );
+        }
+        fclose($contrainte_fichier);
     }
 
 
