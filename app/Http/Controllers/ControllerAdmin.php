@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+use App\Models\CONVERSION;
 class ControllerAdmin extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -22,6 +23,8 @@ class ControllerAdmin extends BaseController
                 if(isset($_POST["token"]) && $_POST["token"] == "OmOOi1Jhsw"){
                     $_SESSION["admin"] = true ;
                 }else{
+
+                    if( isset($_POST['algo']) ) { CONVERSION::toCsv(); }
                     return view('adminConnexion');
                 }
             }

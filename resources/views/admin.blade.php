@@ -16,7 +16,7 @@
 
         <fieldset>
             <legend>Repartition</legend>
-            <button id="algo" >Generer </button>
+            <button id="algo" name="algo">Generer </button>
             <button id="pdf" >Recuperer </button>
         </fieldset>
         
