@@ -51,7 +51,7 @@ class CONVERSION extends Model
             DB::select(
                 "SELECT 
                     partie.id_sous_matiere AS id_mat
-                    partie.type AS type
+                    partie.type AS sorte
                     partie.nb_etudiants AS max_etu
                 FROM partie;"
                 ,[]
