@@ -23,11 +23,12 @@ class ControllerAdmin extends BaseController
                 if(isset($_POST["token"]) && $_POST["token"] == "OmOOi1Jhsw"){
                     $_SESSION["admin"] = true ;
                 }else{
-
-                    if( isset($_POST['algo']) ) { CONVERSION::toCsv(); }
                     return view('adminConnexion');
                 }
             }
+
+
+            if( isset($_POST['algo']) ) { CONVERSION::toCsv(); }
             return view('admin');
         }
     }    

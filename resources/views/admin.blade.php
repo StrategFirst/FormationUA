@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        <pre> <?= (isset($_POST['algo']))?'true':'false' ?> </pre>
 
         <form action="{{ route('admin') }}" method="POST">
         @csrf

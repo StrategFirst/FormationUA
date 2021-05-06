@@ -17,10 +17,9 @@ class CONVERSION extends Model
                 return [ $couple->id_etu , $couple->id_mat ];      
             }
             ,
-            array_unique(
                 array_merge(
                     DB::select(
-                        "SELECT choix_etudiants.id AS id_etu, appartenance_matiere.id_sous_matiere AS id_mat
+                        "SELECT choix_etudiants.id_etu AS id_etu, appartenance_matiere.id_sous_matiere AS id_mat
                         FROM choix_etudiants
                             JOIN appartenance_matiere ON choix_etudiants.id_matiere = appartenance_matiere.id_matiere;"
                         ,[]
@@ -35,14 +34,13 @@ class CONVERSION extends Model
                         ,[]
                     )
                 )
-            )
+            
         );
-
-        $suivi_fichier = fopen( 'suivi.csv' , 'w+' );
+        $suivi_fichier = fopen( '../repartition/suivi.csv' , 'w+' );
         foreach( $suivi as $ligne ) {
             fputcsv( $suivi_fichier , $ligne );
         }
-        fclose($suivi);
+        fclose($suivi_fichier);
     }
 
 
