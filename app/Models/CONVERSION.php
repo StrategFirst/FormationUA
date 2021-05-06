@@ -36,7 +36,7 @@ class CONVERSION extends Model
                 )
             
         );
-        $suivi_fichier = fopen( '../repartition/suivi.csv' , 'w+' );
+        $suivi_fichier = fopen( '../repartition/data/suivi.csv' , 'w+' );
         foreach( $suivi as $ligne ) {
             fputcsv( $suivi_fichier , $ligne );
         }
@@ -45,20 +45,20 @@ class CONVERSION extends Model
 
         
         $contrainte = array_map( function($tuple) {
-            return [ $tuple->id_mat , $tuple->type , $tuple->max_etu ];      
+            return [ $tuple->id_mat , $tuple->sorte , $tuple->max_etu ];      
         }
         ,
             DB::select(
                 "SELECT 
-                    partie.id_sous_matiere AS id_mat
-                    partie.type AS sorte
+                    partie.id_sous_matiere AS id_mat,
+                    partie.type AS sorte,
                     partie.nb_etudiants AS max_etu
                 FROM partie;"
                 ,[]
             )
         
         );
-        $contrainte_fichier = fopen( '../repartition/contrainte.csv' , 'w+' );
+        $contrainte_fichier = fopen( '../repartition/data/contrainte.csv' , 'w+' );
         foreach( $contrainte as $ligne ) {
             fputcsv( $contrainte_fichier , $ligne );
         }

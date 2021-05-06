@@ -27,7 +27,6 @@ class ControllerAdmin extends BaseController
                 }
             }
 
-
             if( isset($_POST['algo']) ) { CONVERSION::toCsv(); }
             return view('admin');
         }
