@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 04 mai 2021 à 18:22
+-- Généré le : Dim 09 mai 2021 à 22:40
 -- Version du serveur :  10.3.27-MariaDB-0+deb10u1
 -- Version de PHP : 7.3.27-1~deb10u1
 
@@ -39,6 +39,22 @@ CREATE TABLE `appartenance_matiere` (
 --
 
 INSERT INTO `appartenance_matiere` (`id_matiere`, `id_sous_matiere`) VALUES
+(1, 30),
+(2, 31),
+(3, 32),
+(4, 33),
+(5, 34),
+(6, 35),
+(7, 36),
+(8, 37),
+(9, 38),
+(10, 39),
+(11, 44),
+(12, 45),
+(13, 46),
+(14, 47),
+(15, 48),
+(16, 42),
 (17, 2),
 (18, 12),
 (19, 13),
@@ -63,7 +79,8 @@ INSERT INTO `appartenance_matiere` (`id_matiere`, `id_sous_matiere`) VALUES
 (33, 8),
 (34, 9),
 (34, 10),
-(35, 11);
+(35, 11),
+(36, 43);
 
 -- --------------------------------------------------------
 
@@ -83,11 +100,27 @@ CREATE TABLE `choix_etudiants` (
 INSERT INTO `choix_etudiants` (`id_matiere`, `id_etu`) VALUES
 (11, 5),
 (11, 8),
+(11, 10),
+(11, 13),
+(11, 14),
 (12, 7),
+(12, 16),
+(12, 18),
 (13, 5),
+(14, 10),
+(14, 16),
+(14, 18),
 (15, 7),
 (15, 8),
+(15, 13),
+(15, 14),
+(22, 11),
+(22, 12),
+(23, 17),
 (25, 9),
+(34, 11),
+(34, 12),
+(34, 17),
 (35, 9);
 
 -- --------------------------------------------------------
@@ -133,7 +166,16 @@ INSERT INTO `etudiant` (`id`, `categorie`, `nom`, `prenom`) VALUES
 (5, 'NORMAL', 'NTest', 'PTest'),
 (7, 'NORMAL', 'NTest', 'PTest'),
 (8, 'NORMAL', 'NTest', 'PTest'),
-(9, 'NORMAL', 'NTest', 'PTest');
+(9, 'NORMAL', 'NTest', 'PTest'),
+(10, 'NORMAL', 'NTest', 'PTest'),
+(11, 'NORMAL', 'NTest', 'PTest'),
+(12, 'NORMAL', 'NTest', 'PTest'),
+(13, 'NORMAL', 'NTest', 'PTest'),
+(14, 'NORMAL', 'NTest', 'PTest'),
+(15, 'NORMAL', 'NTest', 'PTest'),
+(16, 'NORMAL', 'NTest', 'PTest'),
+(17, 'NORMAL', 'NTest', 'PTest'),
+(18, 'NORMAL', 'NTest', 'PTest');
 
 -- --------------------------------------------------------
 
@@ -232,7 +274,16 @@ INSERT INTO `inscrit_formation` (`id_etudiant`, `id_formation`) VALUES
 (5, 12),
 (7, 12),
 (8, 12),
-(9, 10);
+(9, 10),
+(10, 12),
+(11, 10),
+(12, 10),
+(13, 12),
+(14, 12),
+(15, 13),
+(16, 12),
+(17, 10),
+(18, 12);
 
 -- --------------------------------------------------------
 
@@ -252,7 +303,7 @@ CREATE TABLE `matiere` (
 --
 
 INSERT INTO `matiere` (`id`, `descriptif`, `id_ue`, `id_groupe_opt`) VALUES
-(1, 'Anglais', 1, NULL),
+(1, 'Anglais S5', 1, NULL),
 (2, 'Fondements de l\'informatique', 2, NULL),
 (3, 'Théorie des langages et compilation', 3, NULL),
 (4, 'DCRA', 4, NULL),
@@ -268,7 +319,7 @@ INSERT INTO `matiere` (`id`, `descriptif`, `id_ue`, `id_groupe_opt`) VALUES
 (14, 'Production automatisée de documents', 11, 1),
 (15, 'Initiation à la programmation de système intélligent', 11, 1),
 (16, '3PE', 13, NULL),
-(17, 'Anglais S1', 14, NULL),
+(17, 'Anglais S1', 18, NULL),
 (18, 'Anglais S2', 24, NULL),
 (19, '3PE', 24, NULL),
 (20, 'Culture numérique', 24, NULL),
@@ -286,7 +337,8 @@ INSERT INTO `matiere` (`id`, `descriptif`, `id_ue`, `id_groupe_opt`) VALUES
 (32, 'Fondement de la chimie atomistique', 21, NULL),
 (33, 'Introduction à l\'Économie', 22, NULL),
 (34, 'Physique et Chimie 2', 23, 3),
-(35, 'Économie 2', 23, 3);
+(35, 'Économie 2', 23, 3),
+(36, 'Anglais S6', 14, NULL);
 
 -- --------------------------------------------------------
 
@@ -297,10 +349,53 @@ INSERT INTO `matiere` (`id`, `descriptif`, `id_ue`, `id_groupe_opt`) VALUES
 CREATE TABLE `partie` (
   `id` int(11) NOT NULL,
   `id_sous_matiere` int(11) NOT NULL,
-  `type` enum('CM','TD','TP') COLLATE utf8_bin NOT NULL,
+  `type` enum('CM','TD','TP','CM-TD') COLLATE utf8_bin NOT NULL,
   `nb_etudiants` int(11) NOT NULL,
-  `nb_heures` int(11) NOT NULL
+  `nb_heures` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `partie`
+--
+
+INSERT INTO `partie` (`id`, `id_sous_matiere`, `type`, `nb_etudiants`, `nb_heures`) VALUES
+(1, 1, 'CM-TD', 40, 8),
+(2, 1, 'TP', 20, 4),
+(3, 2, 'TP', 20, 18),
+(4, 3, 'CM-TD', 40, 40),
+(5, 4, 'CM-TD', 40, 40),
+(6, 5, 'CM-TD', 40, 31),
+(7, 5, 'TP', 20, 24),
+(8, 6, 'CM-TD', 40, 25.3),
+(9, 7, 'CM-TD', 40, 25.3),
+(10, 8, 'CM', 40, 20),
+(11, 9, 'CM-TD', 40, 14.7),
+(12, 10, 'TP', 20, 14.7),
+(13, 11, 'CM-TD', 40, 30),
+(14, 12, 'TP', 40, 18),
+(15, 13, 'CM-TD', 40, 5.3),
+(16, 13, 'TP', 20, 7.3),
+(17, 14, 'TP', 20, 16),
+(18, 15, 'CM-TD', 40, 52.3),
+(19, 17, 'CM-TD', 40, 17.3),
+(20, 18, 'CM-TD', 40, 30.7),
+(21, 22, 'CM-TD', 40, 20),
+(22, 22, 'TP', 20, 20),
+(23, 16, 'CM-TD', 40, 22),
+(24, 19, 'TP', 20, 15),
+(25, 26, 'CM-TD', 40, 60),
+(26, 23, 'CM-TD', 40, 44),
+(27, 20, 'CM-TD', 40, 28),
+(28, 20, 'TP', 20, 8),
+(29, 27, 'CM-TD', 40, 70),
+(30, 24, 'CM-TD', 40, 16),
+(31, 24, 'TP', 20, 24),
+(32, 28, 'CM-TD', 40, 36),
+(33, 29, 'CM-TD', 40, 34),
+(34, 21, 'CM-TD', 40, 39),
+(35, 21, 'TP', 20, 10),
+(36, 25, 'CM-TD', 40, 40),
+(37, 25, 'TP', 20, 6);
 
 -- --------------------------------------------------------
 
@@ -357,7 +452,25 @@ INSERT INTO `sous_matiere` (`id`, `description`) VALUES
 (26, 'Fondement de l\'analyse'),
 (27, 'Arithmétique'),
 (28, 'Micro économie 1'),
-(29, 'Statistique descriptives');
+(29, 'Statistique descriptives'),
+(30, 'Anglais S5'),
+(31, 'Fondements de l\'informatique'),
+(32, 'Théorie des langages et compilation'),
+(33, 'Décomposition, Conception et réalisation d\'application'),
+(34, 'Théorie de l\'information et architecture'),
+(35, 'Programmation Orientée Objet en C++'),
+(36, 'Algorthmique des graphes'),
+(37, 'Base de données'),
+(38, 'Développement web 3'),
+(39, 'Programmation logique et fonctionnel'),
+(41, 'Projet ou Stage'),
+(42, 'Projet Personnel et Professionel de l\'Etudiant'),
+(43, 'Anglais S6'),
+(44, 'SI'),
+(45, 'PY'),
+(46, 'DIGA'),
+(47, 'PAD'),
+(48, 'ISI');
 
 -- --------------------------------------------------------
 
@@ -520,7 +633,7 @@ ALTER TABLE `classe`
 -- AUTO_INCREMENT pour la table `etudiant`
 --
 ALTER TABLE `etudiant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `formation`
@@ -544,19 +657,19 @@ ALTER TABLE `groupe_options`
 -- AUTO_INCREMENT pour la table `matiere`
 --
 ALTER TABLE `matiere`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT pour la table `partie`
 --
 ALTER TABLE `partie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT pour la table `sous_matiere`
 --
 ALTER TABLE `sous_matiere`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT pour la table `ue`
