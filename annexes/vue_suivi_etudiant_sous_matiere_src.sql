@@ -11,6 +11,7 @@ SELECT DISTINCT
 		JOIN ue ON inscrit_formation.id_formation = ue.id_formation
         JOIN matiere ON ue.id = matiere.id_ue
         JOIN appartenance_matiere on matiere.id = appartenance_matiere.id_matiere
+    WHERE matiere.id_groupe_opt IS NULL
 UNION
 SELECT DISTINCT 
 	   choix_etudiants.id_etu AS id_etu,
