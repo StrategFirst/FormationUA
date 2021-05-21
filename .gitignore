@@ -14,3 +14,4 @@ yarn-error.log
 
 *.exe
 /repartition/data
+/repartition/run
