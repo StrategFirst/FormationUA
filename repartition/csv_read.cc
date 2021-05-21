@@ -1,3 +1,8 @@
+
+#include <fstream>
+#include <string>
+#include <vector>
+
 using LigneCSV = std::vector<std::string>;
 using FichierCSV = std::vector<LigneCSV>;
 LigneCSV parseCSV(std::string line) {
