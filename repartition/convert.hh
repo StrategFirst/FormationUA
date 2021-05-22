@@ -10,7 +10,7 @@ std::string StringFromTypeCours(TypeCours k) {
 		case TypeCours::CM: return "CM";
 		case TypeCours::TD: return "TD";
 		case TypeCours::TP: return "TP";
-		case TypeCours::CMTD: return "CMTD";
+		case TypeCours::CMTD: return "CM-TD";
 		default: throw std::domain_error("Type de cour non définie");
 	}
 }
