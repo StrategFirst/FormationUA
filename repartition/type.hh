@@ -3,7 +3,7 @@ enum class TypeCours { CM , CMTD , TD , TP };
 
 // Une matière sera de manière général représenté par son identifiant et pour chacun d'entre eux
 //  on peut affecter une paire de clé(unique) valeurs correspondant a un type/format de cours ainsi que son volume horaire
-using Matiere = std::map<size_t,std::map<TypeCour,size_t>>;
+using Matiere = std::map<size_t,std::map<TypeCours,size_t>>;
 
 // Une classe est un ensemble de groupe (dont le cardinal est borné de 0 à X, X étant prédéfini) qui suit un ensemble de matière
 // Un groupe est un ensemble d'étudiant (dont le cardinal est borné de 0 à TAILLE_GRP_MAX, TAILLE_GRP_MAX étant une constante ajustable)

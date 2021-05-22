@@ -1,8 +1,8 @@
 TypeCours TypeCoursFromString(std::string k) {
-	if(k == "CM") return TypeCour::CM;
-	if(k == "TD") return TypeCour::TD;
-	if(k == "TP") return TypeCour::TP;
-	if(k == "CM-TD") return TypeCour::CMTD;
+	if(k == "CM") return TypeCours::CM;
+	if(k == "TD") return TypeCours::TD;
+	if(k == "TP") return TypeCours::TP;
+	if(k == "CM-TD") return TypeCours::CMTD;
 	throw std::domain_error("Type de cour non définie : " + k);
 }
 std::string StringFromTypeCours(TypeCours k) {

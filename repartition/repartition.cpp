@@ -42,7 +42,7 @@ void AffichageRepartition(const std::vector<Promotion> & promotions) {
 			std::cout << "\t\t" << "matières : (" << classe.matiere_suivi.size() << ")" << std::endl;
 			std::cout << "\t\t\t";
 			for(auto matiere:classe.matiere_suivi) {
-				std::cout << matiere.first << "(" << StringFromTypeCour(matiere.second) << "), ";
+				std::cout << matiere.first << "(" << StringFromTypeCours(matiere.second) << "), ";
 			}
 			std::cout << std::endl;
 
@@ -54,14 +54,11 @@ void AffichageRepartition(const std::vector<Promotion> & promotions) {
 }
 
 std::vector<Promotion> repartitition(Info* data,Matiere* mat,bool repartititionLisse) {
-	bool alpha = true;
-	bool beta = true;
 	std::vector<Promotion> promotions;
 	for(auto & promo:*data) { // Pour chaque futurs promotion
 		Promotion promotion;
-		std::cout << std::endl;
 		//on liste tous les volumes d'étudiants demander, et on garde chaque matière qui le demande
-		std::map<size_t,std::vector<std::pair<size_t,TypeCour>>> volEtu;
+		std::map<size_t,std::vector<std::pair<size_t,TypeCours>>> volEtu;
 		for(const size_t id_mat:promo.id_mat) {
 			for(auto const & ite:mat->at(id_mat)) {
 				try {
