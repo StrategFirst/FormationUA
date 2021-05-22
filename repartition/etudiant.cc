@@ -8,8 +8,6 @@ struct Parcour {
 	std::vector<size_t> id_mat;
 };
 
-const int TAILLE_GRP_MAX = 5;
-
 struct Parcours {
 	std::vector<std::array<size_t,TAILLE_GRP_MAX>> etudiants;
 	std::vector<size_t> id_mat;
@@ -40,7 +38,7 @@ Info* getEtudiant() {
 	for(auto & ligne:csv) {
 		bool find = false;
 		for(auto & etudiant:liste) {
-			if(etudiant.id_etu == std::stoi(ligne.at(0))) {
+			if(etudiant.id_etu == static_cast<size_t>(std::stoi(ligne.at(0)))) {
 				etudiant.id_mat.push_back(std::stoi(ligne.at(1)));
 				find = true;
 				break;
@@ -70,7 +68,6 @@ Info* getEtudiant() {
 			result.push_back(p);
 		}
 	}
-	std::cout << result.size() << std::endl;
 
 	Info* data = new Info;
 	for(auto & parcours:result) {
@@ -84,6 +81,9 @@ Info* getEtudiant() {
 			}
 			p.etudiants.back()[pos] = etudiants;
 			pos++;
+		}
+		for(int overwrite=pos;overwrite<TAILLE_GRP_MAX;overwrite++) {
+			p.etudiants.back()[overwrite] = 0;
 		}
 		data->push_back(p);
 	}
