@@ -6,9 +6,15 @@
 
         <link rel="stylesheet" href="{{asset('css/app.css')}}"/>
         <link rel="stylesheet" href="{{asset('css/admin.css')}}"/>
+
+        <script defer src="{{asset('js/admin.js')}}"></script>
     </head>
 
     <body>
+        <aside>
+            
+        </aside>
+
         <form action="{{ route('admin') }}" method="POST">
         @csrf
         <button name="deco">Deconnexion</button>
