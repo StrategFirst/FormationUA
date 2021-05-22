@@ -3,7 +3,7 @@ TypeCours TypeCoursFromString(std::string k) {
 	if(k == "TD") return TypeCours::TD;
 	if(k == "TP") return TypeCours::TP;
 	if(k == "CM-TD") return TypeCours::CMTD;
-	throw std::domain_error("Type de cour non définie : " + k);
+	throw std::domain_error("Type de cours non définie : " + k);
 }
 std::string StringFromTypeCours(TypeCours k) {
 	switch(k) {
@@ -11,6 +11,6 @@ std::string StringFromTypeCours(TypeCours k) {
 		case TypeCours::TD: return "TD";
 		case TypeCours::TP: return "TP";
 		case TypeCours::CMTD: return "CM-TD";
-		default: throw std::domain_error("Type de cour non définie");
+		default: throw std::domain_error("Type de cours non définie");
 	}
 }
