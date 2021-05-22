@@ -5,17 +5,39 @@
 #include <algorithm>
 #include <utility>
 #include <cmath>
+#include <map>
 
 // Constante de configuration
 const int TAILLE_GRP_MAX = 5;
 
-// Code externe
-#include "csv_read.cc"
+// Type
 
-#include "etudiant.cc"
-#include "matiere.cc"
+enum class TypeCour { CM , CMTD , TD , TP };
 
-// Code principal
+
+using Matiere = std::map<size_t,std::map<TypeCour,size_t>>;
+/*
+Matiere :
+	Pour chaque pair de matière on a des pairs type de cours + volume étudiants 
+	et pour chaque pair type de cour et id du cour on a un unique volume étudiants 
+*/
+
+TypeCour TypeCourFromString(std::string k) {
+	if(k == "CM") return TypeCour::CM;
+	if(k == "TD") return TypeCour::TD;
+	if(k == "TP") return TypeCour::TP;
+	if(k == "CM-TD") return TypeCour::CMTD;
+	throw std::domain_error("Type de cour non définie : " + k);
+}
+std::string StringFromTypeCour(TypeCour k) {
+	switch(k) {
+		case TypeCour::CM: return "CM";
+		case TypeCour::TD: return "TD";
+		case TypeCour::TP: return "TP";
+		case TypeCour::CMTD: return "CMTD";
+		default: throw std::domain_error("Type de cour non définie");
+	}
+}
 
 // Une classe est un ensemble de groupe (dont le cardinal est borné de 0 à X, X étant prédéfini) qui suit un ensemble de matière
 // Un groupe est un ensemble d'étudiant (dont le cardinal est borné de 0 à TAILLE_GRP_MAX, TAILLE_GRP_MAX étant une constante ajustable)
@@ -28,6 +50,16 @@ struct Classe {
 
 // Une promotion est un ensemble de classe
 using Promotion = std::vector<Classe>;
+
+// Code externe
+#include "csv_read.cc"
+#include "csv_write.cc"
+
+#include "etudiant.cc"
+#include "matiere.cc"
+
+
+// Code principal
 
 void AffichageRepartition(const std::vector<Promotion> & promotions) {
 	for(auto promotion:promotions) {
@@ -122,7 +154,7 @@ std::vector<Promotion> repartitition(Info* data,Matiere* mat,bool repartititionL
 		promotions.push_back(promotion);
 	}
 
-	return promotions
+	return promotions;
 }
 
 int main(int argc,char* argv[]) {
@@ -148,7 +180,7 @@ int main(int argc,char* argv[]) {
 	}
 
 	//Traitement des données pour répartittions des étudiants
-	auto resultat = resulrepartitition(data,mat,repartititionLisse);
+	auto resultat = repartitition(data,mat,repartititionLisse);
 
 	if(debug) {
 		std::cout << " ■ Liste des répartitions des étudiants avec leurs matières" << std::endl;
@@ -160,6 +192,7 @@ int main(int argc,char* argv[]) {
 	delete mat;
 
 	//Ré-écriture dans un fichier csv
+	writeCSV(resultat);
 
 	return EXIT_SUCCESS;
 }
