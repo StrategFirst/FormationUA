@@ -26,7 +26,8 @@ FichierCSV getCSV(std::string fileName) {
 		while( ! fichier.eof() ) {
 			fichier.getline(chars,256);
 			std::string line(chars);
-			result.push_back(parseCSV(line));
+			if(line != "")
+				result.push_back(parseCSV(line));
 		}
 		delete[] chars;
 		return result;
