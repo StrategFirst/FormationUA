@@ -17,6 +17,7 @@ LigneCSV parseCSV(std::string line) {
 	}
 	return resultat;
 }
+
 FichierCSV getCSV(std::string fileName) {
 	std::ifstream fichier( fileName.c_str() );
 	if( fichier.is_open() ) {
@@ -32,18 +33,4 @@ FichierCSV getCSV(std::string fileName) {
 	} else {
 		throw std::invalid_argument("An error occured while openning the file!");
 	}
-}
-std::ostream& operator<<(std::ostream & os,const FichierCSV & file) {
-	for(auto const & line:file) {
-		bool k = true;
-		for(auto const & column:line) {
-			if(k)
-				os << " " << column << " | ";
-			else
-				os << " " << column << " | ";
-			k = !k;
-		}
-		os << std::endl;
-	}
-	return os;
 }
