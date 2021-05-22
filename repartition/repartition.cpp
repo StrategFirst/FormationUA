@@ -10,48 +10,10 @@
 // Constante de configuration
 const int TAILLE_GRP_MAX = 5;
 
-// Type
-
-enum class TypeCour { CM , CMTD , TD , TP };
-
-
-using Matiere = std::map<size_t,std::map<TypeCour,size_t>>;
-/*
-Matiere :
-	Pour chaque pair de matière on a des pairs type de cours + volume étudiants 
-	et pour chaque pair type de cour et id du cour on a un unique volume étudiants 
-*/
-
-TypeCour TypeCourFromString(std::string k) {
-	if(k == "CM") return TypeCour::CM;
-	if(k == "TD") return TypeCour::TD;
-	if(k == "TP") return TypeCour::TP;
-	if(k == "CM-TD") return TypeCour::CMTD;
-	throw std::domain_error("Type de cour non définie : " + k);
-}
-std::string StringFromTypeCour(TypeCour k) {
-	switch(k) {
-		case TypeCour::CM: return "CM";
-		case TypeCour::TD: return "TD";
-		case TypeCour::TP: return "TP";
-		case TypeCour::CMTD: return "CMTD";
-		default: throw std::domain_error("Type de cour non définie");
-	}
-}
-
-// Une classe est un ensemble de groupe (dont le cardinal est borné de 0 à X, X étant prédéfini) qui suit un ensemble de matière
-// Un groupe est un ensemble d'étudiant (dont le cardinal est borné de 0 à TAILLE_GRP_MAX, TAILLE_GRP_MAX étant une constante ajustable)
-// Un étudiant est ici représenté par un id unique qui lui a été attribué
-// Une matière est ici représenté par un id unique qui lui a été attribué et un type de cours (td,tp,cm,...)
-struct Classe {
-	std::vector<std::array<size_t,TAILLE_GRP_MAX>> etudiants;
-	std::vector<std::pair<size_t,TypeCour>> matiere_suivi;
-};
-
-// Une promotion est un ensemble de classe
-using Promotion = std::vector<Classe>;
-
 // Code externe
+#include "type.hh"
+#include "convert.hh"
+
 #include "csv_read.cc"
 #include "csv_write.cc"
 
