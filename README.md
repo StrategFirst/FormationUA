@@ -2,6 +2,31 @@
 Application pour s'inscrire au différente formation de l'université d'Angers
 et permettre la création et répartition des étudiants dans différents groupes
 
+## Information pour développeur 
+### Format des fichiers CSV pour algorithme de réparition
+##### Entrée
+ - suivi.csv
+`<Identifiant étudiant>,<Identifiant matière suivi par l'étudiant>`
+ - contrainte.csv
+`<Identifiant du cours>,<Type du cours>,<Volume maximum d'étudiants>`
+##### Sortie
+ - etudiant_groupe.csv
+`<Identifiant étudiant>,<Identifiant du groupe de l'étudiant>`
+ - groupe_classe.csv
+`<Identifiant du groupe de l'étudiant>,<Identifiant de la classe>`
+ - classe_matiere.csv
+`<Identifiant de la classe>,<Identifiant du cours>,<Type du cours>`
+
+### API
+###### TO DO
+
+### Executable :
+`/run`
+script bash de lancement automatique du serveur
+
+`/repartition/run`
+execute le programme de répartition (plus de détails dans le repertoire du fichier)
+
 ### Avancement projet :
 
 - [x] Modélisation de la BDD
@@ -28,9 +53,14 @@ et permettre la création et répartition des étudiants dans différents groupe
 	- [x] Déterminer la structure
 	- [ ] Front-end
 	- [ ] Back-end
-		- [ ] Programme d'extraction de la BDD vers CSV (php)
+		- [x] Programme d'extraction de la BDD vers CSV (php)
 		- [ ] Programme d'insertion de CSV vers la BDD (php)
-		- [ ] Algorithme de réparatition (c++)
+		- [x] Algorithme de réparatition (c++)
+			- [x] Récupération des données depuis le CSV
+			- [x] formatage des données obtenu pour leur traitement CSV
+			- [ ] Traitement "even" CSV
+			- [x] Traitement "bourrage" CSV
+			- [x] Ecriture dans les fichier CSV
 		- [ ] Programme d'extraction des données de l'algo en page web
 		- [ ] Programme d'extraction des données de l'algo pdf
 - [ ] Parti "api"
