@@ -24,7 +24,8 @@ void writeCSV(const std::vector<Promotion> & promotions) {
 		for(auto classe:promotion) {
 			for(auto groupe:classe.etudiants) {
 				for(auto etudiant:groupe) {
-					csv_etudiant_groupe_fs << etudiant << "," << cmpt_id_groupe << std::endl;
+					if( etudiant != 0)
+						csv_etudiant_groupe_fs << etudiant << "," << cmpt_id_groupe << std::endl;
 				}
 				csv_groupe_classe_fs << cmpt_id_groupe << "," << cmpt_id_classe << std::endl;
 				cmpt_id_groupe++;
