@@ -3,32 +3,13 @@
 #include <map>
 
 enum class TypeCour { CM , CMTD , TD , TP };
-class Cour {
-private:
-	size_t _id_mat;
-	TypeCour _type;
-public:
-	Cour(size_t id_mat,TypeCour type):_id_mat(id_mat),_type(type){}
-	~Cour() = default;
-	Cour(Cour const & c) = default;
-public:
-	bool operator<(const Cour & a) const {
-		if(this->_id_mat == a.get_id_mat())
-			return this->_type > a.get_type();
-		else
-			return this->_id_mat > a.get_id_mat();
-	}
-public:
-	size_t get_id_mat() const { return _id_mat; }
-	TypeCour get_type() const { return _type; }
-
-};
 
 
-using Matiere = std::map<Cour,size_t>;
+using Matiere = std::map<size_t,std::map<TypeCour,size_t>>;
 /*
 Matiere :
-	Pour chaque pair de matière et de forme de cour, on a un volume horaire
+	Pour chaque pair de matière on a des pairs type de cours + volume étudiants 
+	et pour chaque pair type de cour et id du cour on a un unique volume étudiants 
 */
 
 TypeCour TypeCourFromString(std::string k) {
@@ -38,6 +19,15 @@ TypeCour TypeCourFromString(std::string k) {
 	if(k == "CM-TD") return TypeCour::CMTD;
 	throw std::domain_error("Type de cour non définie : " + k);
 }
+std::string StringFromTypeCour(TypeCour k) {
+	switch(k) {
+		case TypeCour::CM: return "CM";
+		case TypeCour::TD: return "TD";
+		case TypeCour::TP: return "TP";
+		case TypeCour::CMTD: return "CMTD";
+		default: throw std::domain_error("Type de cour non définie");
+	}
+}
 Matiere* getMatiere(){
 	FichierCSV csv = getCSV("data/contrainte.csv");
 	Matiere* m = new Matiere();
@@ -45,7 +35,12 @@ Matiere* getMatiere(){
 		size_t id = std::stoi(ligne.at(0));
 		TypeCour tc = TypeCourFromString(ligne.at(1));
 		size_t h = std::stoi(ligne.at(2));
-		m->insert(std::pair<Cour,size_t>({id,tc},h));
+		try {
+			m->at(id).insert({tc,h});
+		} catch(std::out_of_range & e) {
+			std::map<TypeCour,size_t> temp({{tc,h}});
+			m->insert({id,temp});
+		}
 	}
 	return m;
 }
