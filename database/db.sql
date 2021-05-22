@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 11 mai 2021 à 22:51
+-- Généré le : sam. 22 mai 2021 à 07:23
 -- Version du serveur :  10.3.27-MariaDB-0+deb10u1
 -- Version de PHP : 7.3.27-1~deb10u1
 
@@ -1919,7 +1919,48 @@ INSERT INTO `partie` (`id`, `id_sous_matiere`, `type`, `nb_etudiants`, `nb_heure
 (34, 21, 'CM-TD', 40, 39),
 (35, 21, 'TP', 20, 10),
 (36, 25, 'CM-TD', 40, 40),
-(37, 25, 'TP', 20, 6);
+(37, 25, 'TP', 20, 6),
+(38, 30, 'TP', 20, 18),
+(39, 31, 'CM', 100, 24),
+(40, 31, 'TD', 40, 24),
+(41, 32, 'CM', 100, 20),
+(42, 32, 'TD', 40, 16),
+(43, 32, 'TP', 20, 12),
+(44, 33, 'CM', 100, 20),
+(45, 33, 'TD', 40, 12),
+(46, 33, 'TP', 20, 16),
+(47, 34, 'CM', 100, 24),
+(48, 34, 'TD', 40, 14),
+(49, 34, 'TP', 20, 10),
+(50, 35, 'CM', 100, 20),
+(51, 35, 'TP', 20, 44),
+(52, 36, 'CM', 100, 12),
+(53, 36, 'TD', 40, 4),
+(54, 36, 'TP', 20, 8),
+(55, 37, 'CM', 100, 12),
+(56, 37, 'TD', 40, 12),
+(57, 37, 'TP', 20, 16),
+(58, 38, 'CM', 100, 16),
+(59, 38, 'TP', 20, 24),
+(60, 39, 'CM', 100, 20),
+(61, 39, 'TD', 40, 12),
+(62, 39, 'TP', 20, 16),
+(63, 44, 'CM', 100, 8),
+(64, 44, 'TP', 20, 20),
+(65, 45, 'CM', 100, 9),
+(66, 45, 'TD', 40, 6),
+(67, 45, 'TP', 20, 16),
+(68, 46, 'CM', 100, 4),
+(69, 46, 'TP', 20, 24),
+(70, 47, 'CM', 100, 8),
+(71, 47, 'TD', 40, 4),
+(72, 47, 'TP', 20, 16),
+(73, 48, 'CM', 100, 8),
+(74, 48, 'TD', 40, 4),
+(75, 48, 'TP', 40, 16),
+(76, 41, 'TP', 100, 0),
+(77, 42, 'TD', 40, 16),
+(78, 43, 'TP', 20, 18);
 
 -- --------------------------------------------------------
 
@@ -1999,6 +2040,17 @@ INSERT INTO `sous_matiere` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `suivi`
+--
+
+CREATE TABLE `suivi` (
+  `id_classe` int(11) NOT NULL,
+  `id_partie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Doublure de structure pour la vue `suivi_etudiant_sous_matiere`
 -- (Voir ci-dessous la vue réelle)
 --
@@ -2006,6 +2058,17 @@ CREATE TABLE `suivi_etudiant_sous_matiere` (
 `id_etu` int(11)
 ,`id_mat` int(11)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `token`
+--
+
+CREATE TABLE `token` (
+  `token` varchar(128) COLLATE utf8_bin NOT NULL,
+  `access_level` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -2057,7 +2120,7 @@ INSERT INTO `ue` (`id`, `id_formation`, `nom`, `description`, `bloc`) VALUES
 --
 DROP TABLE IF EXISTS `suivi_etudiant_sous_matiere`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`etudiant`@`localhost` SQL SECURITY DEFINER VIEW `suivi_etudiant_sous_matiere`  AS SELECT DISTINCT `inscrit_formation`.`id_etudiant` AS `id_etu`, `appartenance_matiere`.`id_sous_matiere` AS `id_mat` FROM (((`inscrit_formation` join `ue` on(`inscrit_formation`.`id_formation` = `ue`.`id_formation`)) join `matiere` on(`ue`.`id` = `matiere`.`id_ue`)) join `appartenance_matiere` on(`matiere`.`id` = `appartenance_matiere`.`id_matiere`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`etudiant`@`localhost` SQL SECURITY DEFINER VIEW `suivi_etudiant_sous_matiere`  AS SELECT DISTINCT `inscrit_formation`.`id_etudiant` AS `id_etu`, `appartenance_matiere`.`id_sous_matiere` AS `id_mat` FROM (((`inscrit_formation` join `ue` on(`inscrit_formation`.`id_formation` = `ue`.`id_formation`)) join `matiere` on(`ue`.`id` = `matiere`.`id_ue`)) join `appartenance_matiere` on(`matiere`.`id` = `appartenance_matiere`.`id_matiere`)) WHERE `matiere`.`id_groupe_opt` is null ;
 
 --
 -- Index pour les tables déchargées
@@ -2157,6 +2220,13 @@ ALTER TABLE `sous_matiere`
   ADD KEY `id` (`id`);
 
 --
+-- Index pour la table `suivi`
+--
+ALTER TABLE `suivi`
+  ADD KEY `id_classe` (`id_classe`,`id_partie`),
+  ADD KEY `id_partie` (`id_partie`);
+
+--
 -- Index pour la table `ue`
 --
 ALTER TABLE `ue`
@@ -2207,7 +2277,7 @@ ALTER TABLE `matiere`
 -- AUTO_INCREMENT pour la table `partie`
 --
 ALTER TABLE `partie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT pour la table `sous_matiere`
@@ -2247,12 +2317,6 @@ ALTER TABLE `choix_groupe`
   ADD CONSTRAINT `choix_groupe_ibfk_2` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id`);
 
 --
--- Contraintes pour la table `classe`
---
-ALTER TABLE `classe`
-  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id`);
-
---
 -- Contraintes pour la table `incompatibilite`
 --
 ALTER TABLE `incompatibilite`
@@ -2285,6 +2349,13 @@ ALTER TABLE `partie`
 ALTER TABLE `regroupement`
   ADD CONSTRAINT `regroupement_ibfk_1` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id`),
   ADD CONSTRAINT `regroupement_ibfk_2` FOREIGN KEY (`id_classe`) REFERENCES `classe` (`id`);
+
+--
+-- Contraintes pour la table `suivi`
+--
+ALTER TABLE `suivi`
+  ADD CONSTRAINT `suivi_ibfk_1` FOREIGN KEY (`id_classe`) REFERENCES `classe` (`id`),
+  ADD CONSTRAINT `suivi_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id`);
 
 --
 -- Contraintes pour la table `ue`

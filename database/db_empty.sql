@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 11 mai 2021 à 22:53
+-- Généré le : sam. 22 mai 2021 à 07:23
 -- Version du serveur :  10.3.27-MariaDB-0+deb10u1
 -- Version de PHP : 7.3.27-1~deb10u1
 
@@ -189,6 +189,17 @@ CREATE TABLE `sous_matiere` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `suivi`
+--
+
+CREATE TABLE `suivi` (
+  `id_classe` int(11) NOT NULL,
+  `id_partie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
 -- Doublure de structure pour la vue `suivi_etudiant_sous_matiere`
 -- (Voir ci-dessous la vue réelle)
 --
@@ -196,6 +207,17 @@ CREATE TABLE `suivi_etudiant_sous_matiere` (
 `id_etu` int(11)
 ,`id_mat` int(11)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `token`
+--
+
+CREATE TABLE `token` (
+  `token` varchar(128) COLLATE utf8_bin NOT NULL,
+  `access_level` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -218,7 +240,7 @@ CREATE TABLE `ue` (
 --
 DROP TABLE IF EXISTS `suivi_etudiant_sous_matiere`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`etudiant`@`localhost` SQL SECURITY DEFINER VIEW `suivi_etudiant_sous_matiere`  AS SELECT DISTINCT `inscrit_formation`.`id_etudiant` AS `id_etu`, `appartenance_matiere`.`id_sous_matiere` AS `id_mat` FROM (((`inscrit_formation` join `ue` on(`inscrit_formation`.`id_formation` = `ue`.`id_formation`)) join `matiere` on(`ue`.`id` = `matiere`.`id_ue`)) join `appartenance_matiere` on(`matiere`.`id` = `appartenance_matiere`.`id_matiere`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`etudiant`@`localhost` SQL SECURITY DEFINER VIEW `suivi_etudiant_sous_matiere`  AS SELECT DISTINCT `inscrit_formation`.`id_etudiant` AS `id_etu`, `appartenance_matiere`.`id_sous_matiere` AS `id_mat` FROM (((`inscrit_formation` join `ue` on(`inscrit_formation`.`id_formation` = `ue`.`id_formation`)) join `matiere` on(`ue`.`id` = `matiere`.`id_ue`)) join `appartenance_matiere` on(`matiere`.`id` = `appartenance_matiere`.`id_matiere`)) WHERE `matiere`.`id_groupe_opt` is null ;
 
 --
 -- Index pour les tables déchargées
@@ -318,6 +340,13 @@ ALTER TABLE `sous_matiere`
   ADD KEY `id` (`id`);
 
 --
+-- Index pour la table `suivi`
+--
+ALTER TABLE `suivi`
+  ADD KEY `id_classe` (`id_classe`,`id_partie`),
+  ADD KEY `id_partie` (`id_partie`);
+
+--
 -- Index pour la table `ue`
 --
 ALTER TABLE `ue`
@@ -408,12 +437,6 @@ ALTER TABLE `choix_groupe`
   ADD CONSTRAINT `choix_groupe_ibfk_2` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id`);
 
 --
--- Contraintes pour la table `classe`
---
-ALTER TABLE `classe`
-  ADD CONSTRAINT `classe_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id`);
-
---
 -- Contraintes pour la table `incompatibilite`
 --
 ALTER TABLE `incompatibilite`
@@ -446,6 +469,13 @@ ALTER TABLE `partie`
 ALTER TABLE `regroupement`
   ADD CONSTRAINT `regroupement_ibfk_1` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id`),
   ADD CONSTRAINT `regroupement_ibfk_2` FOREIGN KEY (`id_classe`) REFERENCES `classe` (`id`);
+
+--
+-- Contraintes pour la table `suivi`
+--
+ALTER TABLE `suivi`
+  ADD CONSTRAINT `suivi_ibfk_1` FOREIGN KEY (`id_classe`) REFERENCES `classe` (`id`),
+  ADD CONSTRAINT `suivi_ibfk_2` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id`);
 
 --
 -- Contraintes pour la table `ue`
