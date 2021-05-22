@@ -32,7 +32,7 @@ void writeCSV(const std::vector<Promotion> & promotions) {
 
 			for(auto matiere:classe.matiere_suivi) {
 				// First element correspond to the subject id, the second correspond to the subject type of course (TD,TP,CM,CMTD)
-				csv_classe_matiere_fs << matiere.first << "," << StringFromTypeCours(matiere.second) << "," << cmpt_id_classe << std::endl;
+				csv_classe_matiere_fs << cmpt_id_classe << "," << matiere.first << "," << StringFromTypeCours(matiere.second) << std::endl;
 			}
 		}
 		cmpt_id_classe++;
