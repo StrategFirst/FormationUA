@@ -25,7 +25,10 @@ et permettre la création et répartition des étudiants dans différents groupe
 script bash de lancement automatique du serveur
 
 `/repartition/run`
-execute le programme de répartition (plus de détails dans le repertoire du fichier)
+execute le programme de répartition 
+
+`/repartition/compile`
+compile le programme de répartition 
 
 ### Avancement projet :
 
