@@ -3,6 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Resources\AdminRessource;
+use App\Http\Resources\ClasseRessource;
+use App\Http\Resources\EtudiantRessource;
+use App\Http\Resources\FormationRessource;
+use App\Http\Resources\GroupeRessource;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/admin' , function() {
+    return new AdminRessource([]);
 });
+
+Route::get('/' , function() { return new GlobalRessource([]); });
+
+Route::get('/classe' , function() { return new ClasseRessource([]); });
+Route::get('/formation' , function() { return new FormationRessource([]); });
+Route::get('/groupe' , function() { return new GroupeRessource([]); });
+Route::get('/etudiant' , function() { return new EtudiantRessource([]); });
