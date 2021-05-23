@@ -19,7 +19,7 @@ class CONVERSION extends Model
             ,
             DB::select("SELECT * FROM suivi_etudiant_sous_matiere")    
         );
-        $suivi_fichier = fopen( '../repartition/data/suivi.csv' , 'w+' );
+        $suivi_fichier = fopen( 'repartition/data/suivi.csv' , 'w+' );
         foreach( $suivi as $ligne ) {
             fputcsv( $suivi_fichier , $ligne );
         }
@@ -41,7 +41,7 @@ class CONVERSION extends Model
             )
         
         );
-        $contrainte_fichier = fopen( '../repartition/data/contrainte.csv' , 'w+' );
+        $contrainte_fichier = fopen( 'repartition/data/contrainte.csv' , 'w+' );
         foreach( $contrainte as $ligne ) {
             fputcsv( $contrainte_fichier , $ligne );
         }
@@ -69,7 +69,7 @@ class CONVERSION extends Model
         DB::delete("DELETE FROM classe;");
 
         // gestion du fichier etudiant_groupe
-            $handle = fopen("../repartition/data/etudiant_groupe.csv","r");
+            $handle = fopen("repartition/data/etudiant_groupe.csv","r");
             //DB::beginTransaction();
 
             //traitement ( envoi bdd)
@@ -94,7 +94,7 @@ class CONVERSION extends Model
 
 
         // gestion du fichier groupe_classe
-            $handle = fopen("../repartition/data/groupe_classe.csv","r");
+            $handle = fopen("repartition/data/groupe_classe.csv","r");
             DB::beginTransaction();
 
             //traitement ( envoi bdd)
@@ -119,7 +119,7 @@ class CONVERSION extends Model
             fclose($handle);
 
         // gestion du fichier classe_matiere
-            $handle = fopen("../repartition/data/classe_matiere.csv","r");
+            $handle = fopen("repartition/data/classe_matiere.csv","r");
 
             //traitement ( envoi bdd)
             while (( $data = fgetcsv($handle,1000,",")) !== FALSE)
