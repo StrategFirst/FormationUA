@@ -7,7 +7,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
-use App\Models\CONVERSION;
+use App\Jobs\ProcessRepartition;
+
 class ControllerAdmin extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -27,8 +28,15 @@ class ControllerAdmin extends BaseController
                 }
             }
 
-            if( isset($_POST['algo']) ) { CONVERSION::toCsv(); }
+            if( isset($_POST['algo']) ) { 
+                ProcessRepartition::dispatch();
+            }
+
+            if( isset($_POST['pdf']) ) {  }
             return view('admin');
         }
-    }    
+    }
+    
+    public function generation() {
+    }
 }
