@@ -15,9 +15,9 @@ prefixLogFile=$(date +%F)
 
 # Run
 echo -e "$colorUA ► Starting server $colorRESET"
-php artisan serve --port 8000 --host 0.0.0.0 > logs/$prefixLogFile-serv.log & \
+php artisan serve --port 8000 --host 0.0.0.0 >> logs/$prefixLogFile-serv.log & \
 echo -e "$colorUA ► Starting background tasks $colorRESET" &&
-php artisan queue:work --timeout=600 --tries=1 > logs/$prefixLogFile-task.log && fg
+php artisan queue:work --timeout=600 --tries=1 >> logs/$prefixLogFile-task.log && fg
 
 
 
