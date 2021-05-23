@@ -42,7 +42,7 @@ class ProcessRepartition implements ShouldQueue, ShouldBeUnique
 
         $this->step['current'] = 2;
         $this->step['name'] = 'Running repartition algorithm';
-        exec('cd ../repartition/;./run --debug', $shell_output, $shell_error);
+        exec('./repartition/run', $shell_output, $shell_error);
 
         if($shell_error == 0) {
             $this->step['current'] = 3;
