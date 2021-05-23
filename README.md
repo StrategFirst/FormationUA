@@ -51,7 +51,7 @@ compile le programme de répartition
 		- [x] Empécher les accès aux pages via l'url direct pour ignoré des étapes
 		- [x] Changer les headers des réponses
 		- [x] Gestion personnalisé des pages d'erreur (404,500 etc)
-	- [ ] Faire des test de sécurité (insertion sql etc)
+	- [x] Faire des test de sécurité (insertion sql etc)
 - [ ] Parti "admin"
 	- [x] Déterminer la structure
 	- [ ] Front-end
