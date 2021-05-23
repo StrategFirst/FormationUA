@@ -1,1 +1,1 @@
-g++ -Wall -std=c++17 repartition.cpp -o run -o3
+g++ -Wall -std=c++17 repartition.cpp -O3 -o run
