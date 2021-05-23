@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\Jobs\ProcessRepartition;
-
+use Queue;
 class ControllerAdmin extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -29,7 +29,7 @@ class ControllerAdmin extends BaseController
             }
 
             if( isset($_POST['algo']) ) { 
-                ProcessRepartition::dispatch();
+                Queue::push(new ProcessRepartition());
             }
 
             if( isset($_POST['pdf']) ) {  }
