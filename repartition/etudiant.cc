@@ -33,7 +33,7 @@ void afficheInfo(Info const & data) {
 }
 
 Info* getEtudiant() {
-	FichierCSV csv = getCSV("./repartition/data/suivi.csv");
+	FichierCSV csv = getCSV("data/suivi.csv");
 	std::vector<Etudiant> liste;
 	for(auto & ligne:csv) {
 		bool find = false;

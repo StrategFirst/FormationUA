@@ -8,9 +8,9 @@ void writeCSV(const std::vector<Promotion> & promotions) {
 	std::ofstream csv_groupe_classe_fs;
 	std::ofstream csv_classe_matiere_fs;
 
-	csv_etudiant_groupe_fs.open("./repartition/data/etudiant_groupe.csv", std::ofstream::out | std::ofstream::trunc);
-	csv_groupe_classe_fs.open("./repartition/data/groupe_classe.csv", std::ofstream::out | std::ofstream::trunc);
-	csv_classe_matiere_fs.open("./repartition/data/classe_matiere.csv", std::ofstream::out | std::ofstream::trunc);
+	csv_etudiant_groupe_fs.open("data/etudiant_groupe.csv", std::ofstream::out | std::ofstream::trunc);
+	csv_groupe_classe_fs.open("data/groupe_classe.csv", std::ofstream::out | std::ofstream::trunc);
+	csv_classe_matiere_fs.open("data/classe_matiere.csv", std::ofstream::out | std::ofstream::trunc);
 
 	if( ! csv_etudiant_groupe_fs.is_open() ) throw std::invalid_argument(" Unable to open file ");
 	if( ! csv_groupe_classe_fs.is_open() ) throw std::invalid_argument(" Unable to open file ");

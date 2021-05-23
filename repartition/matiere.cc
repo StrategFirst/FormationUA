@@ -3,7 +3,7 @@
 #include <map>
 
 Matiere* getMatiere(){
-	FichierCSV csv = getCSV("./repartition/data/contrainte.csv");
+	FichierCSV csv = getCSV("data/contrainte.csv");
 	Matiere* m = new Matiere();
 	for(auto ligne:csv) {
 		size_t id = std::stoi(ligne.at(0));
