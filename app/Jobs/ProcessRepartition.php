@@ -36,21 +36,22 @@ class ProcessRepartition implements ShouldQueue, ShouldBeUnique
      */
     public function handle()
     {
-        $this->step['current'] = 1;
-        $this->step['name'] = 'Fetch data from database';
+        echo date("[ Y-m-d H:i:s ]").' - '."Répartition 0/3 : Base de donnée -> CSV \n";
+
         CONVERSION::toCSV();
 
-        $this->step['current'] = 2;
-        $this->step['name'] = 'Running repartition algorithm';
-        exec('cd repartition;./run', $shell_output, $shell_error);
+        echo date("[ Y-m-d H:i:s ]").' - '."Répartition 1/3 : CSV -> répartition -> CSV \n";
 
-        if($shell_error == 0) {
-            $this->step['current'] = 3;
-            $this->step['name'] = 'Fetching back result to database';
-            CONVERSION::fromCSV();
-        } else {
-            $this->step['current'] = null;
-            $this->step['name'] = 'An error occured during the algorithm';
+        exec('cd repartition;./run', $shell_output, $shell_error);
+        
+        echo date("[ Y-m-d H:i:s ]").' - '."Répartition 2/3 : CSV -> Base de donnée \n";
+
+        if($shell_error != 0) {
+            return $this->fail(new ErrorException("{$shell_error} : {$shell_output} "));
         }
+
+        CONVERSION::fromCSV();
+        
+        echo date("[ Y-m-d H:i:s ]").' - '."Répartition 3/3 : Términé avec succès ! \n";
     }
 }
