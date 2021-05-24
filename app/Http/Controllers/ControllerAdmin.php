@@ -8,6 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\Jobs\ProcessRepartition;
+use App\Models\TOKEN;
+
 use Queue;
 class ControllerAdmin extends BaseController
 {
@@ -21,7 +23,7 @@ class ControllerAdmin extends BaseController
         } else {
             if(!isset($_SESSION["admin"]))
             {
-                if(isset($_POST["token"]) && $_POST["token"] == "OmOOi1Jhsw"){
+                if(isset($_POST["token"]) && TOKEN::is_token_admin($_POST["token"])){
                     $_SESSION["admin"] = true ;
                 }else{
                     return view('adminConnexion');
