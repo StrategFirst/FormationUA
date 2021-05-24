@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Resources\AdminRessource;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,7 @@ Route::post('/recap', 'App\Http\Controllers\ControllerRecap@render')->name('reca
 Route::post('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin');
 
 Route::get('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin');
+
+Route::get('/admin/api', function () {
+    return new AdminRessource([]);
+})->name('admin');
