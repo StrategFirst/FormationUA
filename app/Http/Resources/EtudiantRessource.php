@@ -29,6 +29,7 @@ class EtudiantRessource extends ResourceCollection
 		if(sizeof($query) == 0) {
 			return ["Pas d'étudiant pour l'id : "=>$_GET['id']];
 		} else {
+			$query[0]->groupe = array_map( function($v){return $v->id_groupe;} , DB::select("SELECT id_groupe FROM choix_groupe WHERE id_etu = :id_etu",['id_etu'=>$query[0]->id]) );
 			return $query[0];
 		}
 	 }
