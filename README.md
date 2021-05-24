@@ -25,6 +25,7 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
 `<Identifiant de la classe>,<Identifiant du cours>,<Type du cours>`
 
 ### API
+<pre>
 /api
  ├ /etudiant
  |  Par défaut : une liste d'étudiant, et un étudiant étant un identifiant, une catégorie, un nom et un prénom
@@ -44,7 +45,7 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
  |		si la classe avec l'id éxiste : un objet de classe, avec en plus les groupes et les matières liés
  |		si le groupe n'éxiste pas : un objet avec le champ "Pas de classe pour l'id"
  └
-
+</pre>
 
 ### Executable :
 `/run`
