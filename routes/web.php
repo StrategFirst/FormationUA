@@ -30,4 +30,4 @@ Route::get('/admin', 'App\Http\Controllers\ControllerAdmin@render')->name('admin
 
 Route::get('/admin/api', function () {
     return new AdminRessource([]);
-})->name('admin');
+})->name('adminapi');
