@@ -1,9 +1,14 @@
 function updateInfo(aside) {
-	fetch( `${window.location.href}/info` )
-		.then( response => response.json() )
+	fetch( `${window.location.href}/api` )
+		.then( response => {
+			if(response.status === 200) {
+				return response.json();
+			} else {
+				return aside.innerText = 'Erreur dans l\'api !';
+			} } )
 		.then( json => aside.innerText = JSON.stringify(json) )
-		.catch( err => aside.innerText = 'An error occured while trying to fetch data');
-	setTimeout(updateInfo,2500,aside);
+		.catch( err => aside.innerText = 'Une erreur est survenu lors du traitement des données');
+	setTimeout(updateInfo,45_000,aside);
 }
 
 updateInfo( document.querySelector('aside') );
