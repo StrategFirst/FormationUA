@@ -33,7 +33,7 @@ echo -e -n "$colorUA ► Lancement du serveur web $encour $colorRESET \r"
 pidServerWeb=$(php artisan serve --port 8000 --host 0.0.0.0 >> logs/$prefixLogFile-serv.log & echo $!)
 echo -e "$colorUA ► Serveur web lancer $colorRESET$valide$colorGREY ( logs/$prefixLogFile-serv.log ) $colorRESET "
 echo -e -n "$colorUA ► Lancement du serveur des taches de fond $encour $colorRESET \r"
-pidServerTask=$(php artisan queue:work --timeout=600 --tries=1 >> logs/$prefixLogFile-task.log & echo $!)
+pidServerTask=$(php artisan queue:work --timeout=0 --tries=1 >> logs/$prefixLogFile-task.log & echo $!)
 echo -e "$colorUA ► Serveur de taches de fond lancer $colorRESET$valide$colorGREY ( logs/$prefixLogFile-task.log ) $colorRESET "
 
 # Arrêt
