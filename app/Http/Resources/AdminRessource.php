@@ -21,9 +21,9 @@ class AdminRessource extends ResourceCollection
             $serverTask = sizeof(DB::select('SELECT id FROM jobs;'));
             $lastUpdate = date("d/m/Y H:i:s", filemtime("../repartition/data/etudiant_groupe.csv"));
             return [
-                'serverstatus'=> ($serverTask > 0) ? 'working' : 'sleeping',
-                'servertaskcount'=> $serverTask,
-                'lastupdate'=> $lastUpdate
+                'Statut serveur'=> ($serverTask > 0) ? 'working' : 'sleeping',
+                'Tache en attente'=> $serverTask,
+                'Dernière mise à jour'=> $lastUpdate
             ];
         } else {
             return [ 'Accès restreint' => "Vous devez être connecter en tant qu'administrateur pour obtenir cela"];
