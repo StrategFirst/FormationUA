@@ -44,6 +44,9 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
  |  Si un `id` est fournis :
  |  	si la classe avec l'id éxiste : un objet de classe, avec en plus les groupes et les matières liés
  |  	si le groupe n'éxiste pas : un objet avec le champ "Pas de classe pour l'id"
+ |
+ ├ /formation
+ |  Retourne la liste des formations
  └
 </pre>
 
