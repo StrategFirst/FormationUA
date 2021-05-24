@@ -25,6 +25,7 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
 `<Identifiant de la classe>,<Identifiant du cours>,<Type du cours>`
 
 ### API
+Une API au format JSON est disponible en voici la structure :
 <pre>
  /api
  ├ /etudiant
