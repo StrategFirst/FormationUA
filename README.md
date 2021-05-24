@@ -2,6 +2,13 @@
 Application pour s'inscrire au différente formation de l'université d'Angers
 et permettre la création et répartition des étudiants dans différents groupes
 
+## Installation
+Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++17 ou supérrieur, os linux
+ 1 - Télécharger ce répertoire
+ 2 - créé le fichier .env avec votre config et via le modèle .env.example
+ 3 - Lancer le serveur avec ./run (une fois dans le répertoire du projet, l'utilisateur éxécutant le programme doit avoirs les permissions sur les fichiers et de lancer un serveur)
+
+
 ## Information pour développeur 
 ### Format des fichiers CSV pour algorithme de réparition
 ##### Entrée
