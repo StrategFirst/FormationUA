@@ -25,7 +25,8 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
 `<Identifiant de la classe>,<Identifiant du cours>,<Type du cours>`
 
 ### API
-Une API au format JSON est disponible en voici la structure :
+Une API au format JSON est disponible, avec une limitation de 2 requêtes par minute,
+et avec un token en restriction, en voici la structure :
 <pre>
  /api
  | Retourne des informations général sur l'application (a utiliser pour vérifié votre code externe)
