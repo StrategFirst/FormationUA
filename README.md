@@ -18,7 +18,20 @@ et permettre la création et répartition des étudiants dans différents groupe
 `<Identifiant de la classe>,<Identifiant du cours>,<Type du cours>`
 
 ### API
-###### TO DO
+/api
+ ├ /etudiant
+ |  Par défaut : une liste d'étudiant, et un étudiant étant un identifiant, une catégorie, un nom et un prénom
+ |  Si un `id` est fournis : 
+ |  	si l'étudiant avec l'id éxiste : un objet d'étudiant avec en plus groupe qui contient l'id de ses groupes
+ |  	si l'étudiant n'éxiste pas : un objet avec le champ "Pas d'étudiant pour l'id"
+ |
+ ├ /groupe
+ |  Par défaut : une liste de groupe, c'est à dire une liste de pair (id,nom)
+ |  Si un `id` est fournis :
+ |		si le groupe avec l'id éxiste : un objet de groupe, avec en plus les étudiants et les classes liés
+ |		si le groupe n'éxispte pas : un objet avec le champ "Pas de groupe pour l'id"
+ └
+
 
 ### Executable :
 `/run`
@@ -55,7 +68,7 @@ compile le programme de répartition
 - [ ] Parti "admin"
 	- [x] Déterminer la structure
 	- [ ] Front-end
-	- [ ] Back-end
+	- [x] Back-end
 		- [x] Programme d'extraction de la BDD vers CSV (php)
 		- [x] Programme d'insertion de CSV vers la BDD (php)
 		- [x] Algorithme de réparatition (c++)
@@ -70,7 +83,7 @@ compile le programme de répartition
 	- [x] Choix de fonctionnement
 		- [x] Choix du format d'entrée
 		- [x] Choix du format de sortie (json)
-	- [ ] Récupération des données depuis la BDD
-	- [ ] Transformation et expositions des données
+	- [x] Récupération des données depuis la BDD
+	- [x] Transformation et expositions des données
 	- [ ] Restriction d'accès (token ?)
 
