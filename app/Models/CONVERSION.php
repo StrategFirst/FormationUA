@@ -48,18 +48,19 @@ class CONVERSION extends Model
         fclose($contrainte_fichier);
     }
 
+    public static function motAleatoire(int $longueur) {
+        $chaine = "";
+        for( $i = 0 ; $i < $longueur ; $i++ ) {
+          $r = random_int(0,62);
+          if($r < 26) $chaine .= chr( $r + 97 );
+          if($r < 52) $chaine .= chr( $r + 65 - 26 );
+          $chaine .= chr( $r + 48 - 52 );
+        }
+        return utf8_encode($chaine);
+    }
+
     public static function fromCSV() {
 
-        function motAleatoire(int $longueur) {
-            $chaine = "";
-            for( $i = 0 ; $i < $longueur ; $i++ ) {
-              $r = random_int(0,62);
-              if($r < 26) $chaine .= chr( $r + 97 );
-              if($r < 52) $chaine .= chr( $r + 65 - 26 );
-              $chaine .= chr( $r + 48 - 52 );
-            }
-            return utf8_encode($chaine);
-        }
 
         // delete previous
         DB::delete("DELETE FROM choix_groupe;");
@@ -79,7 +80,7 @@ class CONVERSION extends Model
                 if( ! isset($groupeInserted[$data[1]]) ) {
                     DB::insert(
                         "INSERT INTO groupe(id,nom) VALUES (:id , :nom)",
-                        ['id' => $data[1] , 'nom' => motAleatoire(5)]
+                        ['id' => $data[1] , 'nom' => CONVERSION::motAleatoire(5)]
                     );
                     $groupeInserted[$data[1]] = true;
                 }
@@ -104,7 +105,7 @@ class CONVERSION extends Model
                 if( ! isset($classeInserted[$data[1]]) ) {
                     DB::insert(
                         "INSERT INTO classe(id,nom) VALUES (:id , :nom)",
-                        ['id' => $data[1] , 'nom' => motAleatoire(5)]
+                        ['id' => $data[1] , 'nom' => CONVERSION::motAleatoire(5)]
                     );
                     $classeInserted[$data[1]] = true;
                 }
@@ -115,7 +116,7 @@ class CONVERSION extends Model
             
             }
 
-            //$pdo->commit();
+            DB::commit();
             fclose($handle);
 
         // gestion du fichier classe_matiere
