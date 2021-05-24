@@ -48,7 +48,11 @@ Une API au format JSON est disponible en voici la structure :
  |
  ├ /formation
  |  Retourne la liste des formations
- └
+ |
+ └ /admin
+    Retourne des informations relativent au statut du serveur
+    ⚠️ Cette partie de l'API requiert des droits suplémentaire (connecter en tant qu'administrateur)
+ 
 </pre>
 
 ### Executable :
