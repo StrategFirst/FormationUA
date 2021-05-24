@@ -8,6 +8,7 @@ use App\Http\Resources\ClasseRessource;
 use App\Http\Resources\EtudiantRessource;
 use App\Http\Resources\FormationRessource;
 use App\Http\Resources\GroupeRessource;
+use App\Http\Resources\GlobalRessource;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,7 @@ use App\Http\Resources\GroupeRessource;
 |
 */
 
-Route::get('/admin' , function() {
-    return new AdminRessource([]);
-});
+Route::get('/admin' , function() { return new AdminRessource([]); });
 
 Route::get('/' , function() { return new GlobalRessource([]); });
 
