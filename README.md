@@ -28,6 +28,8 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
 Une API au format JSON est disponible en voici la structure :
 <pre>
  /api
+ | Retourne des informations général sur l'application (a utiliser pour vérifié votre code externe)
+ |
  ├ /etudiant
  |  Par défaut : une liste d'étudiant, et un étudiant étant un identifiant, une catégorie, un nom et un prénom
  |  Si un `id` est fournis : 
