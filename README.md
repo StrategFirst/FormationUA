@@ -36,7 +36,13 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
  |  Par défaut : une liste de groupe, c'est à dire une liste de pair (id,nom)
  |  Si un `id` est fournis :
  |		si le groupe avec l'id éxiste : un objet de groupe, avec en plus les étudiants et les classes liés
- |		si le groupe n'éxispte pas : un objet avec le champ "Pas de groupe pour l'id"
+ |		si le groupe n'éxiste pas : un objet avec le champ "Pas de groupe pour l'id"
+ |
+ ├ /classe
+ |	 Par défaut : une liste de groupe, c'est à dire une liste de pair (id,nom)
+ |  Si un `id` est fournis :
+ |		si la classe avec l'id éxiste : un objet de classe, avec en plus les groupes et les matières liés
+ |		si le groupe n'éxiste pas : un objet avec le champ "Pas de classe pour l'id"
  └
 
 
