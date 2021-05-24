@@ -26,7 +26,7 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
 
 ### API
 <pre>
-/api
+ /api
  ├ /etudiant
  |  Par défaut : une liste d'étudiant, et un étudiant étant un identifiant, une catégorie, un nom et un prénom
  |  Si un `id` est fournis : 
@@ -36,14 +36,14 @@ Avant l'installation assuez-vous d'avoirs installer Laravel 8.x, et g++ avec c++
  ├ /groupe
  |  Par défaut : une liste de groupe, c'est à dire une liste de pair (id,nom)
  |  Si un `id` est fournis :
- |		si le groupe avec l'id éxiste : un objet de groupe, avec en plus les étudiants et les classes liés
- |		si le groupe n'éxiste pas : un objet avec le champ "Pas de groupe pour l'id"
+ |  	si le groupe avec l'id éxiste : un objet de groupe, avec en plus les étudiants et les classes liés
+ |  	si le groupe n'éxiste pas : un objet avec le champ "Pas de groupe pour l'id"
  |
  ├ /classe
- |	 Par défaut : une liste de groupe, c'est à dire une liste de pair (id,nom)
+ |  Par défaut : une liste de groupe, c'est à dire une liste de pair (id,nom)
  |  Si un `id` est fournis :
- |		si la classe avec l'id éxiste : un objet de classe, avec en plus les groupes et les matières liés
- |		si le groupe n'éxiste pas : un objet avec le champ "Pas de classe pour l'id"
+ |  	si la classe avec l'id éxiste : un objet de classe, avec en plus les groupes et les matières liés
+ |  	si le groupe n'éxiste pas : un objet avec le champ "Pas de classe pour l'id"
  └
 </pre>
 
