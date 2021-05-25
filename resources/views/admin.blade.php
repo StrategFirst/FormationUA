@@ -11,33 +11,35 @@
     </head>
 
     <body>
+        <h1> Administration </h1>
+
         <aside>
             
         </aside>
 
         <form action="{{ route('admin') }}" method="POST">
-        @csrf
-        <button name="deco">Deconnexion</button>
+            @csrf
 
-        <fieldset>
-            <legend>Repartition</legend>
-            <button id="algo" name="algo">Generer </button>
-            <button id="pdf" >Recuperer </button>
-        </fieldset>
-        
+            <div>
+                <h3>Repartition</h3>
+                <button id="algo" name="algo">Generer </button>
+                <button id="pdf" >Recuperer </button>
+            </div>
+            
+            <div>
+                <h3> Option </h3>
+                <label class="custom-radio" for="repartition-equilibre">
+                    <input type="radio" name="repartition" id="repartition-equilibre" value="equilibre"/>
+                    <span> Even </span>
+                </label>
+                <label class="custom-radio" for="repartition-bourrage">
+                    <input type="radio" name="repartition" id="repartition-bourrage" value="bourrage"/>
+                    <span> Bourrage </span>
+                </label>
+            </div>
 
-        <fieldset title="WIP">
-            <legend> Option </legend>
-            <button> Répartition even / bourrage </button> <!-- 20 20 20 2 OU 17 17 17 17-->
-            <button> Humainement facile </button> <!-- TP1 + TP2 = TD1 & TP3 + TP4 = TD2 & TD1 + TD2 = CM  OU des étudiants peuvent être réparti comme on veut -->
-        </fieldset>
 
-        
-        <fieldset title="WIP">
-            <legend> Insertion </legend>
-            <button> Insertion massive Étudiant </button>
-            <button> Insertion Formation</button>
-        </fieldset>
+            <button name="deco">Deconnexion</button>
 
         </form>
 

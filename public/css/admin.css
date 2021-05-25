@@ -1,30 +1,130 @@
-fieldset {
-	width: 25rem;
-}
+
 
 button {
-	cursor: pointer;
-	transition: .2s;
-}
-
-fieldset button {
-	background-color: black;
-	border: 
-		groove 2px grey
-		groove 2px grey
-		groove 2px lightgrey
-		groove 2px lightgrey;
-	padding: .2em .4em;
-	color: var(--color-ua);}
-
-
-button[name="deco"] {
-	float: right;
 	margin: 1em;
 	padding: .2em .5em;
 	border: none;
+
+	cursor: pointer;
+
+	padding:.4em 1em;
+	border-radius: 1px 1em;
+
+	transition: .2s;
+}
+
+button:hover {
+	background-color: var(--color-ua);
+
+}
+
+button[name="deco"] {
+	position: absolute;
+	bottom: -8rem;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 
 button[name="deco"]:hover {
+	background-color: red;
+}
+
+h1 {
+	text-align: center;
+}
+aside {
+	width: 100%;
+	height: 8rem;
+
+	display: grid;
+	grid-template-rows: 8rem;
+	grid-template-columns: repeat(3, 1fr);
+	align-content: center;
+	text-align: center;
+
+	position: relative;
+}
+
+aside > h4 {
+	color: red;
+	
+}
+
+aside::after, aside::before {
+	display: block;
+	content: ' ';
+
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%,0);
+
+	width: 90%;
+	height: 2px;
 	background-color: var(--color-ua);
+	bottom: 0;
+}
+
+aside::after {
+	bottom: 0;
+}
+aside::before {
+	top: 0;
+}
+
+.custom-radio {
+	cursor: pointer;
+}
+.custom-radio input {
+	display:none;
+}
+
+.custom-radio span::before {
+	display: inline-block;
+	content: ' ';
+	width: 1rem;
+	height: 1rem;
+	background-color: #a7a7a7;
+	border:none;
+	border-radius: .1rem;
+}
+
+.custom-radio input:checked ~ span::before {
+	background-color: #10EE10;
+
+}
+
+form {
+	text-align: center;
+	display: block;
+	width: clamp(50%, 30rem, 80%);
+	margin: auto;
+
+	position: relative;
+}
+
+form > * {
+	margin: 1.5rem 0;
+}
+
+form div * {
+	margin: .2em 1em;
+}
+
+form div {
+	border: none;
+	position: relative;
+	padding-top: 2rem;
+}
+
+h3 {
+	margin: 1rem 0 !important;
+}
+
+form > div ~ div::before {
+	margin: auto;
+	content: ' ';
+	display: block;
+	width: 4rem;
+	height: 1px;
+	background-color: #424242;
 }
