@@ -99,7 +99,7 @@ compile le programme de répartition
 		- [x] Algorithme de réparatition (c++)
 			- [x] Récupération des données depuis le CSV
 			- [x] formatage des données obtenu pour leur traitement CSV
-			- [ ] Traitement "even" CSV
+			- [x] Traitement "even" CSV
 			- [x] Traitement "bourrage" CSV
 			- [x] Ecriture dans les fichier CSV
 		- [x] Programme d'extraction des données de l'algo en page web
