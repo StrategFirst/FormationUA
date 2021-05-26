@@ -34,9 +34,9 @@ document.getElementById('recup-csv').onclick = (event) => {
 	let y = document.createElement('a');
 	let z = document.createElement('a');
 
-	x.href= './recup/etudiants.csv';
-	y.href= './recup/matieres.csv';
-	z.href= './recup/formation.csv';
+	x.href= '/admin/recup/etudiants.csv';
+	y.href= '/admin/recup/matieres.csv';
+	z.href= '/admin/recup/formation.csv';
 
 	x.style.display = 'none';
 	y.style.display = 'none';
