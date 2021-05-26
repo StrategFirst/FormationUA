@@ -30,6 +30,7 @@ function Repartition(emplacement,donnee) {
 		}
 	} )();
 	
+	target.innerHTML = `<li><b> Nombre de classes : </b></li>`;
 	for(let i in donnee) {
 		let next = current + donnee[i].prct;
 		let ccolor = nextColor();
@@ -47,7 +48,7 @@ function Repartition(emplacement,donnee) {
 		dessin.stroke();
 		current = next;
 		let item = document.createElement('li');
-		item.innerHTML = `<span style="color:${ccolor};">■</span> ${i} [${donnee[i].nmb}]`;
+		item.innerHTML = `<span style="color:${ccolor};">■</span>${i}<b>${donnee[i].nmb}</b>`;
 		target.appendChild(item);
 	}
 
