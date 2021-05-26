@@ -61,6 +61,13 @@
                         Repartition(document.getElementById('data-classe'),data);
                     </script>
                 </div>
+
+                <div id="data-count">
+                    <h6> Taille des données traitées par l'algorithme </h6>
+                    <span> <i> Lors de la dernière itération de répartition </i> </span>
+                    <p> Nombre d'étudiant &rArr; <b> {{ $algoDataCount->algo_etu_count }} </b> </p>
+                    <p> Nombre de matières &rArr; <b> {{ $algoDataCount->algo_mat_count }} </b> </p>
+                </div>
             </div>
             <button name="deco">Deconnexion</button>
 

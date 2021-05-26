@@ -36,7 +36,10 @@ class ControllerAdmin extends BaseController
             }
 
             if( isset($_POST['pdf']) ) {  }
-            return view('admin',['classeParFormation' => BDD::get_classe_count_by_formation() ]);
+            return view('admin',[
+                'classeParFormation' => BDD::get_classe_count_by_formation() ,
+                'algoDataCount' => BDD::get_algo_count_data()
+            ]);
         }
     }
     

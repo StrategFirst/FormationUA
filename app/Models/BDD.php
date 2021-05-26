@@ -179,6 +179,16 @@ class BDD extends Model
           JOIN formation ON ue.id_formation = formation.id
           GROUP BY formation.id,formation.nom;
         ');
-
     }
+
+    public static function get_algo_count_data() {
+        return DB::select('
+        SELECT *
+        FROM 
+	        (SELECT count(DISTINCT choix_groupe.id_etu) AS "algo_etu_count" FROM choix_groupe) AS a
+        JOIN
+	        (SELECT count(DISTINCT partie.id_sous_matiere) AS "algo_mat_count" FROM partie JOIN suivi ON partie.id = suivi.id_partie) AS b ;
+        ')[0];
+    }
+
 }
