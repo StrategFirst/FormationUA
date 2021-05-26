@@ -18,8 +18,6 @@ function Repartition(emplacement,donnee) {
 
 	canvas.width = 400;
 	canvas.height = 400;
-	dessin.fillStyle = '#FFF';
-	dessin.fillRect(0,0,canvas.width,canvas.height);
 		
 	let current = 0;
 	let nextColor = ( () => {
