@@ -92,7 +92,7 @@ compile le programme de répartition
 	- [x] Faire des test de sécurité (insertion sql etc)
 - [ ] Parti "admin"
 	- [x] Déterminer la structure
-	- [ ] Front-end
+	- [x] Front-end
 	- [x] Back-end
 		- [x] Programme d'extraction de la BDD vers CSV (php)
 		- [x] Programme d'insertion de CSV vers la BDD (php)
@@ -104,11 +104,11 @@ compile le programme de répartition
 			- [x] Ecriture dans les fichier CSV
 		- [x] Programme d'extraction des données de l'algo en page web
 		- [ ] Programme d'extraction des données de l'algo pdf
-- [ ] Parti "api"
+- [x] Parti "api"
 	- [x] Choix de fonctionnement
 		- [x] Choix du format d'entrée
 		- [x] Choix du format de sortie (json)
 	- [x] Récupération des données depuis la BDD
 	- [x] Transformation et expositions des données
-	- [ ] Restriction d'accès (token ?)
+	- [x] Restriction d'accès (token ?)
 
