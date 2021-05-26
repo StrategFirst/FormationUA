@@ -24,7 +24,7 @@
             <div>
                 <h3>Repartition</h3>
                 <button id="algo" name="algo">Generer </button>
-                <button id="pdf" >Recuperer </button>
+                <button id="recup-csv" name="recup-csv">Recuperer </button>
             </div>
             
             <div>

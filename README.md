@@ -103,7 +103,7 @@ compile le programme de répartition
 			- [x] Traitement "bourrage" CSV
 			- [x] Ecriture dans les fichier CSV
 		- [x] Programme d'extraction des données de l'algo en page web
-		- [ ] Programme d'extraction des données de l'algo pdf
+		- [ ] Programme d'extraction des données de l'algo csv
 - [x] Parti "api"
 	- [x] Choix de fonctionnement
 		- [x] Choix du format d'entrée
