@@ -19,19 +19,19 @@ void writeCSV(const std::vector<Promotion> & promotions) {
 	// Those count serve for creating id, used for linking student to subject passing through groupes and classes
 	unsigned int cmpt_id_classe = 1;
 
-	for(auto promotion:promotions) {
+	for(const auto & promotion:promotions) {
 
 		std::vector<size_t> already_seen_etu;
 		std::vector<std::pair<size_t,size_t>> already_seen_grp_classe;
 		std::vector<std::pair<size_t,std::pair<size_t,TypeCours>>> already_seen_classe_mat;
 
-		for(auto classe:promotion) {
-			for(auto groupe:classe.etudiants) {
-				for(auto etudiant:groupe.etudiants) {
+		for(const auto & classe:promotion) {
+			for(const auto & groupe:classe.etudiants) {
+				for(const auto & etudiant:groupe.etudiants) {
 					if( etudiant != 0) {
 
 						bool seen = false;
-						for(auto ele:already_seen_etu) {
+						for(const auto & ele:already_seen_etu) {
 							if(ele == etudiant) {
 								seen = true; break;
 							}
@@ -45,7 +45,7 @@ void writeCSV(const std::vector<Promotion> & promotions) {
 				}
 
 				bool seen = false;
-				for(auto ele:already_seen_grp_classe) {
+				for(const auto & ele:already_seen_grp_classe) {
 					if(ele.first == groupe.uid && ele.second == cmpt_id_classe) {
 						seen = true; break;
 					}
@@ -54,13 +54,13 @@ void writeCSV(const std::vector<Promotion> & promotions) {
 					already_seen_grp_classe.push_back({groupe.uid,cmpt_id_classe});
 					csv_groupe_classe_fs << groupe.uid << "," << cmpt_id_classe << std::endl;
 				}
-				
+
 			}
 
-			for(auto matiere:classe.matiere_suivi) {
+			for(const auto & matiere:classe.matiere_suivi) {
 				// First element correspond to the subject id, the second correspond to the subject type of course (TD,TP,CM,CMTD)
 				bool seen = false;
-				for(auto ele:already_seen_classe_mat) {
+				for(const auto & ele:already_seen_classe_mat) {
 					if(ele.first == cmpt_id_classe && ele.second.first == matiere.first && ele.second.second == matiere.second) {
 						seen = true;
 						break;
