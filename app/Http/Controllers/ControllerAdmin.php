@@ -39,15 +39,41 @@ class ControllerAdmin extends BaseController
                 }
                 Queue::push(new ProcessRepartition($repartition));
             }
-
-            if( isset($_POST['pdf']) ) {  }
+            
             return view('admin',[
                 'classeParFormation' => BDD::get_classe_count_by_formation() ,
                 'algoDataCount' => BDD::get_algo_count_data()
             ]);
         }
     }
-    
-    public function generation() {
+
+    public static function get_etudiants() {
+        return join( 
+            "\n" , 
+            array_map(
+                function($o) { return "{$o->prenom},{$o->nom},{$o->id}"; },
+                BDD::get_export_etudiants()
+            )
+        );
+    }
+
+    public static function get_matieres() {
+        return join(
+            "\n" ,
+            array_map(
+                function($o) { return "{$o->mat_nom},{$o->mat_type},{$o->id}"; },
+                BDD::get_export_matieres()
+            )
+        );
+    }
+
+    public static function get_formation() {
+        return join(
+            "\n" ,
+            array_map(
+                function($o) { return "{$o->id},{$o->formation}"; },
+                BDD::get_export_formation()
+            )
+        );
     }
 }

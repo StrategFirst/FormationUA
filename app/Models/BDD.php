@@ -191,4 +191,36 @@ class BDD extends Model
         ')[0];
     }
 
+    public static function get_export_etudiants() {
+        return DB::select('
+        SELECT etudiant.nom AS "nom",etudiant.prenom AS "prenom",regroupement.id_groupe AS "id"
+        FROM etudiant
+            JOIN choix_groupe ON etudiant.id = choix_groupe.id_etu
+            JOIN regroupement ON choix_groupe.id_groupe = regroupement.id_groupe;        
+        ');
+    }
+
+    public static function get_export_matieres() {
+        return DB::select('
+        SELECT suivi.id_classe AS "id",partie.type AS "mat_type",sous_matiere.description AS "mat_nom"
+        FROM suivi
+            JOIN partie ON partie.id = suivi.id_partie
+            JOIN sous_matiere ON sous_matiere.id = partie.id_sous_matiere;
+        ');
+    }
+
+    public static function get_export_formation() {
+        return DB::select('
+        SELECT DISTINCT suivi.id_classe as "id",formation.nom as "formation"
+        FROM suivi 
+          JOIN partie ON suivi.id_partie = partie.id
+          JOIN appartenance_matiere ON partie.id_sous_matiere = appartenance_matiere.id_sous_matiere
+          JOIN matiere ON appartenance_matiere.id_matiere = matiere.id
+          JOIN ue ON matiere.id_ue = ue.id
+          JOIN formation ON ue.id_formation = formation.id;
+        ');
+
+    }
+
+    
 }
