@@ -1,7 +1,7 @@
 function updateInfo(aside) {
 
 	aside.innerHTML = '';
-	fetch( `./api` )
+	fetch( `/admin/api` )
 		.then( response => {
 			if(response.status === 200) {
 				return response.json();
