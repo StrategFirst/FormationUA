@@ -57,12 +57,12 @@ class ProcessRepartition implements ShouldQueue, ShouldBeUnique
 
         exec('cd repartition;./run'.$this->optRepartition, $shell_output, $shell_error);
         
-        echo date("[ Y-m-d H:i:s ").$this->nowMS().'ms ] - '."Répartition 2/3 : CSV -> Base de donnée \n";
-
         if($shell_error != 0) {
             return $this->fail(new ErrorException("{$shell_error} : {$shell_output} "));
         }
 
+        echo date("[ Y-m-d H:i:s ").$this->nowMS().'ms ] - '."Répartition 2/3 : CSV -> Base de donnée \n";
+        
         CONVERSION::fromCSV();
         
         echo date("[ Y-m-d H:i:s ").$this->nowMS().'ms ] - '."Répartition 3/3 : Términé avec succès ! \n";
