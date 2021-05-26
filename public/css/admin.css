@@ -128,3 +128,14 @@ form > div ~ div::before {
 	height: 1px;
 	background-color: #424242;
 }
+
+#data-classe ul {
+	list-style-type: none;
+	text-align: left;
+}
+
+#data-classe {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 20rem);
+	align-items: center;
+}

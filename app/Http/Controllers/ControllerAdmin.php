@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 use App\Jobs\ProcessRepartition;
 use App\Models\TOKEN;
+use App\Models\BDD;
 
 use Queue;
 class ControllerAdmin extends BaseController
@@ -35,7 +36,7 @@ class ControllerAdmin extends BaseController
             }
 
             if( isset($_POST['pdf']) ) {  }
-            return view('admin');
+            return view('admin',['classeParFormation' => BDD::get_classe_count_by_formation() ]);
         }
     }
     

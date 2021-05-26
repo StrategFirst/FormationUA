@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{asset('css/admin.css')}}"/>
 
         <script defer src="{{asset('js/admin.js')}}"></script>
+        <script src="{{asset('js/graph.js')}}"></script>
     </head>
 
     <body>
@@ -38,7 +39,29 @@
                 </label>
             </div>
 
-
+            <div id="data">
+                <h3> Information </h3>
+                <span title="Ces données ne sont pas mises à jour automatiquement!"> &#x26a0;</span>
+                <h6> Nombre de classe par formation : </h6>
+                <div id="data-classe">
+                    <script> 
+                        let data = <?php
+                            echo 
+                                "{" .
+                                implode( 
+                                    ',' , 
+                                    array_map( 
+                                        function($data) { return "'{$data->nom_formation}':{$data->nmb_classe}"; },
+                                        $classeParFormation
+                                    )
+                                )
+                                . "}; ";
+                        
+                        ?>;
+                        Repartition(document.getElementById('data-classe'),data);
+                    </script>
+                </div>
+            </div>
             <button name="deco">Deconnexion</button>
 
         </form>

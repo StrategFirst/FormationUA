@@ -165,6 +165,20 @@ class BDD extends Model
 		foreach($choix_matiere_id_list as $choix) {
 			DB::insert('INSERT INTO choix_etudiants(id_etu,id_matiere) VALUES (:id_etu,:id_mat)',['id_etu'=>$id,'id_mat'=>$choix]);
 		}
+    }
+
+    public static function get_classe_count_by_formation() {
+        return DB::select('
+        SELECT count(DISTINCT classe.id) AS "nmb_classe",formation.nom as "nom_formation"
+        FROM classe 
+          JOIN suivi ON classe.id = suivi.id_classe
+          JOIN partie ON suivi.id_partie = partie.id
+          JOIN appartenance_matiere ON partie.id_sous_matiere = appartenance_matiere.id_sous_matiere
+          JOIN matiere ON appartenance_matiere.id_matiere = matiere.id
+          JOIN ue ON matiere.id_ue = ue.id
+          JOIN formation ON ue.id_formation = formation.id
+          GROUP BY formation.id,formation.nom;
+        ');
 
     }
 }
