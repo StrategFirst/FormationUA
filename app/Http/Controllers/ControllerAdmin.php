@@ -31,8 +31,13 @@ class ControllerAdmin extends BaseController
                 }
             }
 
-            if( isset($_POST['algo']) ) { 
-                Queue::push(new ProcessRepartition());
+            if( isset($_POST['algo']) ) {
+                if( isset($_POST['repartition']) ) {
+                    $repartition = $_POST['repartition'];
+                } else {
+                    $repartition = '';
+                }
+                Queue::push(new ProcessRepartition($repartition));
             }
 
             if( isset($_POST['pdf']) ) {  }

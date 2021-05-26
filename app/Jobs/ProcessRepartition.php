@@ -20,8 +20,13 @@ class ProcessRepartition implements ShouldQueue, ShouldBeUnique
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($typeRepartition)
     {
+        switch($typeRepartition) {
+            case 'equilibre': $this->optProg = ' --repartition:balanced'; break;
+            case 'bourrage': $this->optProg = ' --repartition:unbalanced'; break;
+            default:  $this->optProg = ''; break;
+        }
     }
 
     /**
@@ -37,7 +42,7 @@ class ProcessRepartition implements ShouldQueue, ShouldBeUnique
 
         echo date("[ Y-m-d H:i:s ]").' - '."Répartition 1/3 : CSV -> répartition -> CSV \n";
 
-        exec('cd repartition;./run', $shell_output, $shell_error);
+        exec('cd repartition;./run'.$this->optProg, $shell_output, $shell_error);
         
         echo date("[ Y-m-d H:i:s ]").' - '."Répartition 2/3 : CSV -> Base de donnée \n";
 
