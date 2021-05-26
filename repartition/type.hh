@@ -9,8 +9,12 @@ using Matiere = std::map<size_t,std::map<TypeCours,size_t>>;
 // Un groupe est un ensemble d'étudiant (dont le cardinal est borné de 0 à TAILLE_GRP_MAX, TAILLE_GRP_MAX étant une constante ajustable)
 // Un étudiant est ici représenté par un id unique qui lui a été attribué
 // Une matière est ici représenté par un id unique qui lui a été attribué et un type de cours (td,tp,cm,...)
+struct Groupe {
+	size_t uid;
+	std::array<size_t,TAILLE_GRP_MAX> etudiants;
+};
 struct Classe {
-	std::vector<std::array<size_t,TAILLE_GRP_MAX>> etudiants;
+	std::vector<Groupe> etudiants;
 	std::vector<std::pair<size_t,TypeCours>> matiere_suivi;
 };
 

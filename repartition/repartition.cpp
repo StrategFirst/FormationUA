@@ -33,7 +33,7 @@ void AffichageRepartition(const std::vector<Promotion> & promotions) {
 			std::cout << "\t\t" << "étudiants : (" << classe.etudiants.size() * TAILLE_GRP_MAX << ")" << std::endl;
 			std::cout << "\t\t\t";
 			for(auto groupes:classe.etudiants) {
-				for(auto etudiant:groupes) {
+				for(auto etudiant:groupes.etudiants) {
 					std::cout << etudiant << ", ";
 				}
 			}
@@ -55,6 +55,7 @@ void AffichageRepartition(const std::vector<Promotion> & promotions) {
 
 std::vector<Promotion> repartitition(Info* data,Matiere* mat,bool repartititionLisse) {
 	std::vector<Promotion> promotions;
+	size_t offset_id_groupe = 1;
 	for(auto & promo:*data) { // Pour chaque futurs promotion
 		Promotion promotion;
 		//on liste tous les volumes d'étudiants demander, et on garde chaque matière qui le demande
@@ -68,41 +69,44 @@ std::vector<Promotion> repartitition(Info* data,Matiere* mat,bool repartititionL
 				}
 			}
 		}
+
+		//affectation d'un UID à chaque groupe
+		std::vector<Groupe> lesGroupes;
+		for(auto & grp:promo.etudiants) {
+			lesGroupes.push_back({ offset_id_groupe , grp});
+			offset_id_groupe++;
+		}
 		
 
 		for(auto v:volEtu) {
 			if(repartititionLisse) { // répartition : "even" / "lisse"
 				/*
-					Nombre d'étudiant par groupe	= TAILLE_GRP_MAX 	 = *donnée*
-					Nombre d'étudiant par classe	= v.first 			 = *donnée*
-					Nombre de groupe					= promo.etudiants.size() = *donnée*
-					Nombre de groupe par classe	= nb_grp_par_classe= ⌊ NombreEtudiantParClasse / NombreEtudiantParGroupe ⌋
-					Nombre de classe					= nb_classe			 = ⌈ NombreDeGroupe / NombreDeGroupeParClasse ⌉
+					max etu par groupe = TAILLE_GRP_MAX
+					max etu par classe = v.first
+					nombre groupe = lesGroupes.size()
+					nombre etu = lesGroupes.size() * TAILLE_GRP_MAX
+					nombre classe = nombre etu / nombre etu par classe
 				*/
-				int nb_grp_par_classe = floor(((float)(v.first)) / ((float)(TAILLE_GRP_MAX)));
-				int nb_classe = ceil( promo.etudiants.size() / nb_grp_par_classe);
-				int nb_goupe_suplement = v.first % TAILLE_GRP_MAX;
-
-				int pos = 0;
-				for(int c=0 ; c<nb_classe ; c++) {
+				int nmbEtu = lesGroupes.size() * TAILLE_GRP_MAX;
+				int nmbClasse = ceil( ((float)nmbEtu) / ((float)(v.first)) );
+				std::vector<Classe> cls;
+				for(int i=0 ; i<nmbClasse ; i++) {
 					Classe cl;
 					cl.matiere_suivi = v.second;
-					for(int g=0 ; g<nb_grp_par_classe ; g++) {
-						cl.etudiants.push_back(promo.etudiants[pos]);
-						pos++;
-					}
-					if(nb_goupe_suplement > 0) {
-						cl.etudiants.push_back(promo.etudiants[pos]);
-						pos++;
-					}
+					cls.push_back(cl);
+				}
+				for(size_t j=0; j<lesGroupes.size() ; j++ ) {
+					cls.at( j % nmbClasse ).etudiants.push_back( lesGroupes[j]  );
+				}
+				for(Classe & cl:cls) {
 					promotion.push_back(cl);
 				}
 			} else { // répartition : "bumpy" / "bourage"
-				for(size_t c=0 ; c<promo.etudiants.size() ;) {
+				for(size_t c=0 ; c<lesGroupes.size() ;) {
 					Classe cl;
 					cl.matiere_suivi = v.second;
-					for(size_t g=0 ; g<v.first && c<promo.etudiants.size(); g+=TAILLE_GRP_MAX) {
-						cl.etudiants.push_back(promo.etudiants[c]);
+					for(size_t g=0 ; g<v.first && c<lesGroupes.size(); g+=TAILLE_GRP_MAX) {
+						cl.etudiants.push_back(lesGroupes[c]);
 						c++;
 					}
 					promotion.push_back(cl);
