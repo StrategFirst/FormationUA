@@ -30,10 +30,12 @@ prefixLogFile=$(date +%F)
 
 # Lancement
 echo -e -n "$colorUA ► Lancement du serveur web $encour $colorRESET \r"
-pidServerWeb=$(php artisan serve --port 8000 --host 0.0.0.0 >> logs/$prefixLogFile-serv.log & echo $!)
+php artisan serve --port 8000 --host 0.0.0.0 >> logs/$prefixLogFile-serv.log &
+pidServerWeb=$!
 echo -e "$colorUA ► Serveur web lancer $colorRESET$valide$colorGREY ( logs/$prefixLogFile-serv.log ) $colorRESET "
 echo -e -n "$colorUA ► Lancement du serveur des taches de fond $encour $colorRESET \r"
-pidServerTask=$(php artisan queue:work --timeout=600 --tries=1 >> logs/$prefixLogFile-task.log & echo $!)
+php artisan queue:work --timeout=600 --tries=1 >> logs/$prefixLogFile-task.log &
+pidServerTask=$!
 echo -e "$colorUA ► Serveur de taches de fond lancer $colorRESET$valide$colorGREY ( logs/$prefixLogFile-task.log ) $colorRESET "
 
 # Arrêt
@@ -48,9 +50,8 @@ exit \
 echo -e "$colorUA ► Serveur opérationnel $valide"
 
 # Attente
-while true; do
-	: sleep 1 d # Attente d'interruption
-done
+wait "$pidServerTask"
+wait "$pidServerWeb"
 
 
 
