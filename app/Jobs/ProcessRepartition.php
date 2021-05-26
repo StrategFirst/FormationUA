@@ -22,11 +22,6 @@ class ProcessRepartition implements ShouldQueue, ShouldBeUnique
      */
     public function __construct()
     {
-        $this->step = [ 
-            'current' => 0,
-            'total' => 3,
-            'name' => 'Starting'
-        ];
     }
 
     /**
